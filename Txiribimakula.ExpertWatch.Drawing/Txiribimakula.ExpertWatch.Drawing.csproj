@@ -46,10 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxesDrawer.cs" />
+    <Compile Include="CoordinateSystem.cs" />
     <Compile Include="CursorDrawer.cs" />
     <Compile Include="DrawableVisitor.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="GeometryDrawer.cs" />
+    <Compile Include="ICoordinateSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScalesDrawer.cs" />
     <Compile Include="Utils.cs" />
@@ -66,10 +68,6 @@
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries\Txiribimakula.ExpertWatch.Geometries.csproj">
       <Project>{3BC49D70-7ADC-44EB-B56D-5CC2D7850AB6}</Project>
       <Name>Txiribimakula.ExpertWatch.Geometries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Graphics.Contracts\Txiribimakula.ExpertWatch.Graphics.Contracts.csproj">
-      <Project>{3960F22B-603E-41FE-AEDD-644BA1AFE8AE}</Project>
-      <Name>Txiribimakula.ExpertWatch.Graphics.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

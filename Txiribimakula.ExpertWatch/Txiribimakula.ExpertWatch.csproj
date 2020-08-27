@@ -125,14 +125,6 @@
       <Project>{3bc49d70-7adc-44eb-b56d-5cc2d7850ab6}</Project>
       <Name>Txiribimakula.ExpertWatch.Geometries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Graphics.Contracts\Txiribimakula.ExpertWatch.Graphics.Contracts.csproj">
-      <Project>{3960F22B-603E-41FE-AEDD-644BA1AFE8AE}</Project>
-      <Name>Txiribimakula.ExpertWatch.Graphics.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Graphics\Txiribimakula.ExpertWatch.Graphics.csproj">
-      <Project>{97E79625-239B-473C-B714-010D4BB2DC48}</Project>
-      <Name>Txiribimakula.ExpertWatch.Graphics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Loading\Txiribimakula.ExpertWatch.Loading.csproj">
       <Project>{6C788DB1-A828-42B8-8E67-92F7D7206FB2}</Project>
       <Name>Txiribimakula.ExpertWatch.Loading</Name>
