@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Txiribimakula.ExpertWatch.ExpertWatchWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White" Cursor="Cross">
+            <wi:Interaction.Triggers>
+                <wi:EventTrigger EventName="SizeChanged">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnSizeChanged" x:Name="sizeChanged"/>
+                </wi:EventTrigger>
+                <wi:EventTrigger EventName="MouseDown">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnMouseDown" x:Name="mouseDown"/>
+                </wi:EventTrigger>
+                <wi:EventTrigger EventName="MouseUp">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnMouseUp" x:Name="mouseUp"/>
+                </wi:EventTrigger>
+                <wi:EventTrigger EventName="MouseMove">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnMouseMove" x:Name="mouseMove"/>
+                </wi:EventTrigger>
+                <wi:EventTrigger EventName="MouseWheel">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnMouseWheel" x:Name="mouseWheel"/>
+                </wi:EventTrigger>
+            </wi:Interaction.Triggers>
+            <ItemsControl ItemsSource="{Binding WatchItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas ClipToBounds="True"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl ItemsSource="{Binding Drawables}">
+                            <ItemsControl.Resources>
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawableSegment}">
+                                    <Line Opacity="0.7" X1="{Binding TransformedGeometry.InitialPoint.X}" Y1="{Binding TransformedGeometry.InitialPoint.Y}" X2="{Binding TransformedGeometry.FinalPoint.X}" Y2="{Binding TransformedGeometry.FinalPoint.Y}" Stroke="Black" StrokeThickness="2"/>
+                                </DataTemplate>
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawableArc}">
+                                    <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding Path}"/>
+                                </DataTemplate>
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawablePoint}">
+                                    <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding Path}"/>
+                                </DataTemplate>
+                            </ItemsControl.Resources>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <GridSplitter Grid.Row="1"
+                      HorizontalAlignment="Stretch"
+                      ResizeDirection="Rows"
+                      Height="5" Width="auto"/>
+        <DockPanel Grid.Row="2">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{Binding WatchItems}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</UserControl>

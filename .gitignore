@@ -1,0 +1,23 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Txiribimakula.ExpertWatch
+/Txiribimakula.ExpertWatch/bin
+/Txiribimakula.ExpertWatch/obj
+/Txiribimakula.ExpertWatch.DrawableGeometries/bin
+/Txiribimakula.ExpertWatch.DrawableGeometries/obj
+/Txiribimakula.ExpertWatch.Drawing/bin
+/Txiribimakula.ExpertWatch.Drawing/obj
+/Txiribimakula.ExpertWatch.Geometries/bin
+/Txiribimakula.ExpertWatch.Geometries/obj
+/Txiribimakula.ExpertWatch.Geometries.Contracts/bin
+/Txiribimakula.ExpertWatch.Geometries.Contracts/obj
+/Txiribimakula.ExpertWatch.Graphics/bin
+/Txiribimakula.ExpertWatch.Graphics/obj
+/Txiribimakula.ExpertWatch.Graphics.Contracts/bin
+/Txiribimakula.ExpertWatch.Graphics.Contracts/obj
+/Txiribimakula.ExpertWatch.Loading/bin
+/Txiribimakula.ExpertWatch.Loading/obj
+/Txiribimakula.ExpertWatch.Loading.CustomLoaders/bin
+/Txiribimakula.ExpertWatch.Loading.CustomLoaders/obj
