@@ -46,10 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoordinateSystem.cs" />
-    <Compile Include="Drawables\Color.cs" />
-    <Compile Include="Drawables\DrawableArc.cs" />
-    <Compile Include="Drawables\DrawablePoint.cs" />
-    <Compile Include="Drawables\DrawableSegment.cs" />
+    <Compile Include="Color.cs" />
+    <Compile Include="DrawableArc.cs" />
+    <Compile Include="DrawablePoint.cs" />
+    <Compile Include="DrawableSegment.cs" />
     <Compile Include="DrawableVisitor.cs" />
     <Compile Include="GeometryDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
