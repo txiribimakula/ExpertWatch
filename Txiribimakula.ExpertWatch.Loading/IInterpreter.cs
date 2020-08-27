@@ -1,6 +1,4 @@
-﻿using EnvDTE;
-using Txiribimakula.ExpertWatch.Drawing;
-using Txiribimakula.ExpertWatch.Drawing;
+﻿using Txiribimakula.ExpertWatch.Drawing;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {

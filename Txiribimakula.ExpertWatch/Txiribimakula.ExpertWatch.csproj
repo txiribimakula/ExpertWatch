@@ -109,6 +109,10 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing.Contracts\Txiribimakula.ExpertWatch.Drawing.Contracts.csproj">
+      <Project>{9e4b8519-ab81-4375-99bc-298aa48b28a3}</Project>
+      <Name>Txiribimakula.ExpertWatch.Drawing.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing\Txiribimakula.ExpertWatch.Drawing.csproj">
       <Project>{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}</Project>
       <Name>Txiribimakula.ExpertWatch.Drawing</Name>

@@ -5,7 +5,7 @@ using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 using Txiribimakula.ExpertWatch.Graphics;
-using Txiribimakula.ExpertWatch.Graphics.Contracts;
+using Txiribimakula.ExpertWatch.Drawing.Contracts;
 using Txiribimakula.ExpertWatch.Loading;
 using Txiribimakula.ExpertWatch.Models;
 

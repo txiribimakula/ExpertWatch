@@ -78,6 +78,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing.Contracts\Txiribimakula.ExpertWatch.Drawing.Contracts.csproj">
+      <Project>{9E4B8519-AB81-4375-99BC-298AA48B28A3}</Project>
+      <Name>Txiribimakula.ExpertWatch.Drawing.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing\Txiribimakula.ExpertWatch.Drawing.csproj">
       <Project>{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}</Project>
       <Name>Txiribimakula.ExpertWatch.Drawing</Name>

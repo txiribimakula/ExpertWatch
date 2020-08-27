@@ -50,5 +50,11 @@
     <Compile Include="IDrawableVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries.Contracts\Txiribimakula.ExpertWatch.Geometries.Contracts.csproj">
+      <Project>{0F20F6AD-62C0-4400-A437-FB0378510EA2}</Project>
+      <Name>Txiribimakula.ExpertWatch.Geometries.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

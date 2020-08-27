@@ -1,6 +1,6 @@
 ﻿using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
-using Txiribimakula.ExpertWatch.Graphics.Contracts;
+using Txiribimakula.ExpertWatch.Drawing.Contracts;
 
 namespace Txiribimakula.ExpertWatch.Graphics
 {
