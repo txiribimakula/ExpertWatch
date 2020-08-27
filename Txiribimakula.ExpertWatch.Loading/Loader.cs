@@ -8,11 +8,11 @@ namespace Txiribimakula.ExpertWatch.Loading
     public class Loader
     {
         private Debugger debugger;
-        private IInterpreterSelector interpreterSelector;
+        private IInterpreter interpreter;
 
-        public Loader(Debugger debugger, IInterpreterSelector interpreterSelector) {
+        public Loader(Debugger debugger, IInterpreter interpreterSelector) {
             this.debugger = debugger;
-            this.interpreterSelector = interpreterSelector;
+            this.interpreter = interpreterSelector;
         }
 
         public async Task<WatchItem> LoadAsync(string newInputName) {
@@ -30,7 +30,6 @@ namespace Txiribimakula.ExpertWatch.Loading
                 watchItem.Description = expression.Type;
                 ExpressionLoader expressionLoader = new ExpressionLoader(expression);
                 IDrawable drawable = null;
-                IInterpreter interpreter = interpreterSelector.Get(expressionLoader.Type);
                 if (interpreter != null) {
                     drawable = interpreter.GetDrawable(expressionLoader);
                 }

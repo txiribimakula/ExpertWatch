@@ -16,8 +16,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             WatchItems = new ObservableCollection<WatchItem>();
             WatchItems.CollectionChanged += OnWatchItemsCollectionChanged;
 
-            IInterpreterSelector interpreterSelector = new InterpreterSelector();
-            loader = new Loader(debugger, interpreterSelector);
+            IInterpreter interpreter = new Interpreter();
+            loader = new Loader(debugger, interpreter);
         }
 
         private Loader loader;

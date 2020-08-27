@@ -44,7 +44,6 @@
     <Compile Include="WatchItem.cs" />
     <Compile Include="ExpressionLoader.cs" />
     <Compile Include="IInterpreter.cs" />
-    <Compile Include="IInterpreterSelector.cs" />
     <Compile Include="ILoader.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

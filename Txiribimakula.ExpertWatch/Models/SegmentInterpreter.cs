@@ -6,9 +6,9 @@ using Txiribimakula.ExpertWatch.Loading;
 
 namespace Txiribimakula.ExpertWatch.Models
 {
-    public class SegmentInterpreter : IInterpreter
+    public static class SegmentInterpreter
     {
-        public IDrawable GetDrawable(ExpressionLoader expression) {
+        public static IDrawable GetDrawable(ExpressionLoader expression) {
             ExpressionLoader initialPointLoader = expression.GetMember("InitialPoint");
             ExpressionLoader finalPointLoader = expression.GetMember("FinalPoint");
 
