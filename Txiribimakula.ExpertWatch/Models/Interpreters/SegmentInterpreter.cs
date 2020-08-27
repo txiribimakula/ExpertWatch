@@ -1,5 +1,4 @@
 ﻿using Txiribimakula.ExpertWatch.DrawableGeometries;
-using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 using Txiribimakula.ExpertWatch.Loading;

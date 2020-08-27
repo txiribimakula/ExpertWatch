@@ -67,13 +67,13 @@
   <ItemGroup>
     <Compile Include="ExpertWatch.cs" />
     <Compile Include="ExpertWatchCommand.cs" />
-    <Compile Include="Models\ArcInterpreter.cs" />
-    <Compile Include="Models\PointInterpreter.cs" />
+    <Compile Include="Models\Interpreters\ArcInterpreter.cs" />
+    <Compile Include="Models\Interpreters\PointInterpreter.cs" />
     <Compile Include="Views\ExpertWatchWindow.xaml.cs">
       <DependentUpon>ExpertWatchWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Interpreter.cs" />
-    <Compile Include="Models\SegmentInterpreter.cs" />
+    <Compile Include="Models\Interpreters\SegmentInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpertWatchPackage.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
