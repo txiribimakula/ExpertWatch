@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Txiribimakula.ExpertWatch.Drawing.Contracts")]
+[assembly: AssemblyTitle("Txiribimakula.ExpertWatch.Geometries")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Txiribimakula.ExpertWatch.Drawing.Contracts")]
+[assembly: AssemblyProduct("Txiribimakula.ExpertWatch.Geometries")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("9e4b8519-ab81-4375-99bc-298aa48b28a3")]
+[assembly: Guid("70484c70-64ca-4ecb-96af-2ae820c4059d")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

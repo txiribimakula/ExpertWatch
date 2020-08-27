@@ -78,20 +78,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing.Contracts\Txiribimakula.ExpertWatch.Drawing.Contracts.csproj">
-      <Project>{9E4B8519-AB81-4375-99BC-298AA48B28A3}</Project>
-      <Name>Txiribimakula.ExpertWatch.Drawing.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Drawing\Txiribimakula.ExpertWatch.Drawing.csproj">
-      <Project>{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}</Project>
+      <Project>{483B7C54-A5AA-4047-998E-B2DD8A7844AE}</Project>
       <Name>Txiribimakula.ExpertWatch.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries.Contracts\Txiribimakula.ExpertWatch.Geometries.Contracts.csproj">
-      <Project>{0F20F6AD-62C0-4400-A437-FB0378510EA2}</Project>
-      <Name>Txiribimakula.ExpertWatch.Geometries.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries\Txiribimakula.ExpertWatch.Geometries.csproj">
-      <Project>{3BC49D70-7ADC-44EB-B56D-5CC2D7850AB6}</Project>
+      <Project>{70484C70-64CA-4ECB-96AF-2AE820C4059D}</Project>
       <Name>Txiribimakula.ExpertWatch.Geometries</Name>
     </ProjectReference>
   </ItemGroup>
