@@ -22,3 +22,5 @@
 /Txiribimakula.ExpertWatch.Loading.CustomLoaders/bin
 /Txiribimakula.ExpertWatch.Loading.CustomLoaders/obj
 /.vs
+/Txiribimakula.ExpertWatch.Drawing.Contracts/obj
+/Txiribimakula.ExpertWatch.Drawing.Contracts/bin/Debug
