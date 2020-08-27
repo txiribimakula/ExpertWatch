@@ -1,5 +1,5 @@
 ﻿using EnvDTE;
-using Txiribimakula.ExpertWatch.DrawableGeometries;
+using Txiribimakula.ExpertWatch.Drawing;
 using System.Threading.Tasks;
 using System.Threading;
 

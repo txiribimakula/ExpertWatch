@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Txiribimakula.ExpertWatch.G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertWatch.Drawing", "Txiribimakula.ExpertWatch.Drawing\Txiribimakula.ExpertWatch.Drawing.csproj", "{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Txiribimakula.ExpertWatch.DrawableGeometries", "Txiribimakula.ExpertWatch.DrawableGeometries\Txiribimakula.ExpertWatch.DrawableGeometries.csproj", "{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertWatch.Loading", "Txiribimakula.ExpertWatch.Loading\Txiribimakula.ExpertWatch.Loading.csproj", "{6C788DB1-A828-42B8-8E67-92F7D7206FB2}"
 EndProject
 Global
@@ -55,14 +53,6 @@ Global
 		{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}.Release|x64.ActiveCfg = Release|Any CPU
 		{BE0B7273-4A41-466C-84CA-B4B9778C3B3F}.Release|x64.Build.0 = Release|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Debug|x64.Build.0 = Debug|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Release|x64.ActiveCfg = Release|Any CPU
-		{F35AB218-F4AC-4AC7-93F6-8F73773D1C6D}.Release|x64.Build.0 = Release|Any CPU
 		{6C788DB1-A828-42B8-8E67-92F7D7206FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C788DB1-A828-42B8-8E67-92F7D7206FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C788DB1-A828-42B8-8E67-92F7D7206FB2}.Debug|x64.ActiveCfg = Debug|Any CPU

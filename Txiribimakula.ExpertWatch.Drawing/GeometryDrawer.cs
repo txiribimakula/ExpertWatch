@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Txiribimakula.ExpertWatch.DrawableGeometries;
+using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Graphics.Contracts;
 
 namespace Txiribimakula.ExpertWatch.Drawing

@@ -1,4 +1,4 @@
-﻿namespace Txiribimakula.ExpertWatch.DrawableGeometries
+﻿namespace Txiribimakula.ExpertWatch.Drawing
 {
     public interface IColor
     {
@@ -7,6 +7,6 @@
         int Blue { get; set; }
         int Alpha { get; set; }
 
-        public string Hex { get; }
+        string Hex { get; }
     }
 }

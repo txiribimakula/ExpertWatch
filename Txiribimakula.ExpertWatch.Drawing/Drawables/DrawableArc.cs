@@ -4,7 +4,7 @@ using System.Globalization;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
-namespace Txiribimakula.ExpertWatch.DrawableGeometries
+namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawableArc : Arc, IDrawableArc {
         public DrawableArc(IPoint initialPoint, IPoint finalPoint, float radius)

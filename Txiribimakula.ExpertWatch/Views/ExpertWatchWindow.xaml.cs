@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using Txiribimakula.ExpertWatch.Geometries;
-using Txiribimakula.ExpertWatch.DrawableGeometries;
+using Txiribimakula.ExpertWatch.Drawing;
 
 namespace Txiribimakula.ExpertWatch
 {

@@ -2,7 +2,7 @@
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
-namespace Txiribimakula.ExpertWatch.DrawableGeometries
+namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawableSegment : Segment, IDrawableSegment
     {

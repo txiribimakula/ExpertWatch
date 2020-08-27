@@ -51,13 +51,13 @@
                     <DataTemplate>
                         <ItemsControl ItemsSource="{Binding Drawables}">
                             <ItemsControl.Resources>
-                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawableSegment}">
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"  DataType="{x:Type local:DrawableSegment}">
                                     <Line Opacity="0.7" X1="{Binding TransformedGeometry.InitialPoint.X}" Y1="{Binding TransformedGeometry.InitialPoint.Y}" X2="{Binding TransformedGeometry.FinalPoint.X}" Y2="{Binding TransformedGeometry.FinalPoint.Y}" Stroke="Black" StrokeThickness="2"/>
                                 </DataTemplate>
-                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawableArc}">
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"  DataType="{x:Type local:DrawableArc}">
                                     <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding Path}"/>
                                 </DataTemplate>
-                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.DrawableGeometries;assembly=Txiribimakula.ExpertWatch.DrawableGeometries"  DataType="{x:Type local:DrawablePoint}">
+                                <DataTemplate xmlns:local="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"  DataType="{x:Type local:DrawablePoint}">
                                     <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding Path}"/>
                                 </DataTemplate>
                             </ItemsControl.Resources>

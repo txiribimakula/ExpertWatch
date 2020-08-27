@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Txiribimakula.ExpertWatch.DrawableGeometries
+namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class Color : IColor
     {
