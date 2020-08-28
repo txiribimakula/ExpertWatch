@@ -3,11 +3,13 @@
 
   <Extern href="stdidcmd.h" />
   <Extern href="vsshlids.h" />
+  <Extern href="VSDbgCmd.h"/>
+  <Extern href="VsDebugGuids.h"/>
 
   <Commands package="guidPackage">
     <Buttons>
-      <Button guid="guidPackageCmdSet" id="idCommand" priority="0x0100" type="Button">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+      <Button guid="guidPackageCmdSet" id="idCommand" priority="0x0600" type="Button">
+        <Parent guid="guidVSDebugGroup" id="IDG_DEBUG_WINDOWS_INSPECT"/>
         <Strings>
           <ButtonText>Expert Watch</ButtonText>
         </Strings>
