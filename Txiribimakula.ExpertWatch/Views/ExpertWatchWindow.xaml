@@ -11,6 +11,7 @@
              d:DesignHeight="100" d:DesignWidth="100">
     <UserControl.Resources>
         <local:ArcToPathConverter x:Key="ArcToPathConverter"/>
+        <local:PointToPathConverter x:Key="PointToPathConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -68,7 +69,7 @@
                                     <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawablePoint}">
-                                    <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding Path}"/>
+                                    <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding TransformedGeometry, Converter={StaticResource PointToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                             </ItemsControl.Resources>
                         </ItemsControl>
