@@ -6,8 +6,12 @@
              xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:drawing="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:Txiribimakula.ExpertWatch"
+             mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="100">
+    <UserControl.Resources>
+        <local:ArcToPathConverter x:Key="ArcToPathConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,6 +20,11 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="White" Cursor="Cross">
             <wi:Interaction.Triggers>
+                <wi:EventTrigger EventName="Loaded">
+                    <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnLoaded" x:Name="loaded"/>
+                </wi:EventTrigger>
                 <wi:EventTrigger EventName="SizeChanged">
                     <ei:CallMethodAction
                         TargetObject="{Binding}"
@@ -56,7 +65,7 @@
                                     <Line Opacity="0.7" X1="{Binding TransformedGeometry.InitialPoint.X}" Y1="{Binding TransformedGeometry.InitialPoint.Y}" X2="{Binding TransformedGeometry.FinalPoint.X}" Y2="{Binding TransformedGeometry.FinalPoint.Y}" Stroke="Black" StrokeThickness="2"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawableArc}">
-                                    <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding Path}"/>
+                                    <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawablePoint}">
                                     <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding Path}"/>

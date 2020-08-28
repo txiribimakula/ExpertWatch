@@ -22,7 +22,7 @@ namespace Txiribimakula.ExpertWatch.Drawing
         private IGeometry transformedGeometry;
         public IGeometry TransformedGeometry {
             get { return transformedGeometry; }
-            set { transformedGeometry = value; }
+            set { transformedGeometry = value; OnPropertyChanged(nameof(TransformedGeometry)); }
         }
 
         private string path;
