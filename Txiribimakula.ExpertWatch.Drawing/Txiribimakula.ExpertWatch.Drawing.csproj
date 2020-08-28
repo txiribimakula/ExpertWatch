@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArcToPathConverter.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Contracts\IColor.cs" />
     <Compile Include="Contracts\ICoordinateSystem.cs" />
