@@ -27,6 +27,22 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private bool isMiddleMouseDown;
         private IPoint lastClickPoint;
 
+        public void OnLoaded(object sender, RoutedEventArgs e) {
+            FrameworkElement frameworkElement = (FrameworkElement)sender;
+
+            ICoordinateSystem coordinateSystem = new CoordinateSystem((float)frameworkElement.ActualWidth, (float)frameworkElement.ActualHeight, new Box(-10, 10, -10, 10));
+            if (geoDrawer == null) {
+                geoDrawer = new GeometryDrawer(coordinateSystem);
+            } else {
+                IPoint currentOffset = geoDrawer.CoordinateSystem.Offset;
+                geoDrawer.CoordinateSystem = coordinateSystem;
+                geoDrawer.CoordinateSystem.Offset = currentOffset;
+                foreach (var watchItem in WatchItems) {
+                    geoDrawer.TransformGeometries(watchItem.Drawables);
+                }
+            }
+        }
+
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {
             ICoordinateSystem coordinateSystem = new CoordinateSystem((float)args.NewSize.Width, (float)args.NewSize.Height, new Box(-10, 10, -10, 10));
             if (geoDrawer == null) {
