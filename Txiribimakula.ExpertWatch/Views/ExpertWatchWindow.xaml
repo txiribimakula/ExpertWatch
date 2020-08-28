@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <local:ArcToPathConverter x:Key="ArcToPathConverter"/>
         <local:PointToPathConverter x:Key="PointToPathConverter"/>
+        <local:SegmentToPathConverter x:Key="SegmentToPathConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -63,10 +64,10 @@
                         <ItemsControl ItemsSource="{Binding Drawables}">
                             <ItemsControl.Resources>
                                 <DataTemplate DataType="{x:Type drawing:DrawableSegment}">
-                                    <Line Opacity="0.7" X1="{Binding TransformedGeometry.InitialPoint.X}" Y1="{Binding TransformedGeometry.InitialPoint.Y}" X2="{Binding TransformedGeometry.FinalPoint.X}" Y2="{Binding TransformedGeometry.FinalPoint.Y}" Stroke="Black" StrokeThickness="2"/>
+                                    <Path Opacity="0.7" Stroke="Black" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawableArc}">
-                                    <Path Opacity="0.7" Stroke="Black"  StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
+                                    <Path Opacity="0.7" Stroke="Black" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawablePoint}">
                                     <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding TransformedGeometry, Converter={StaticResource PointToPathConverter}, Mode=OneWay}"/>
