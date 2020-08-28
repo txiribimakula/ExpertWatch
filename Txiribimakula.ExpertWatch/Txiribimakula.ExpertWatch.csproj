@@ -65,7 +65,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ArcToPathConverter.cs" />
+    <Compile Include="Converters\ArcToPathConverter.cs" />
     <Compile Include="ExpertWatch.cs" />
     <Compile Include="ExpertWatchCommand.cs" />
     <Compile Include="Models\Interpreters\ArcInterpreter.cs" />
