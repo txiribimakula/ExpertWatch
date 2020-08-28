@@ -25,16 +25,8 @@ namespace Txiribimakula.ExpertWatch.Drawing
             set { transformedGeometry = value; OnPropertyChanged(nameof(TransformedGeometry)); }
         }
 
-        private string path;
-        public string Path {
-            get { return path; }
-            set { path = value; OnPropertyChanged(nameof(Path)); }
-        }
-
         public void TransformGeometry(IDrawableVisitor visitor) {
-            IArc transformedArc = visitor.GetTransformedArc(this);
-            Path = "M" + transformedArc.InitialPoint.X.ToString(CultureInfo.InvariantCulture) + "," + transformedArc.InitialPoint.Y.ToString(CultureInfo.InvariantCulture) + " A" + transformedArc.Radius.ToString(CultureInfo.InvariantCulture) + "," + transformedArc.Radius.ToString(CultureInfo.InvariantCulture) + " 0 0 0 " + transformedArc.FinalPoint.X.ToString(CultureInfo.InvariantCulture) + "," + transformedArc.FinalPoint.Y.ToString(CultureInfo.InvariantCulture);
-            TransformedGeometry = transformedArc;
+            TransformedGeometry = visitor.GetTransformedArc(this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
