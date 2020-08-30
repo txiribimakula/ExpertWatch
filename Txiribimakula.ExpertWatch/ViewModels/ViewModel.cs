@@ -27,6 +27,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private bool isMiddleMouseDown;
         private IPoint lastClickPoint;
 
+        public RelayCommand ResetViewCommand { get; set; }
+
         public void OnLoaded(object sender, RoutedEventArgs e) {
             FrameworkElement frameworkElement = (FrameworkElement)sender;
 
@@ -34,6 +36,17 @@ namespace Txiribimakula.ExpertWatch.ViewModels
 
             DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
             geoDrawer = new GeometryDrawer(visitor);
+
+            ResetViewCommand = new RelayCommand(parameter => ResetView());
+        }
+
+        private void ResetView() {
+            ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, new Box(-10, 10, -10, 10));
+            geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
+
+            foreach (var watchItem in WatchItems) {
+                geoDrawer.TransformGeometries(watchItem.Drawables);
+            }
         }
 
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {

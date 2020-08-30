@@ -21,6 +21,11 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="White" Cursor="Cross">
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Reset View" Command="{Binding ResetViewCommand}"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
             <wi:Interaction.Triggers>
                 <wi:EventTrigger EventName="Loaded">
                     <ei:CallMethodAction

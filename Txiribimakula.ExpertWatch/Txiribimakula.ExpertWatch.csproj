@@ -72,6 +72,7 @@
     <Compile Include="ExpertWatchCommand.cs" />
     <Compile Include="Models\Interpreters\ArcInterpreter.cs" />
     <Compile Include="Models\Interpreters\PointInterpreter.cs" />
+    <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Views\ExpertWatchWindow.xaml.cs">
       <DependentUpon>ExpertWatchWindow.xaml</DependentUpon>
     </Compile>
