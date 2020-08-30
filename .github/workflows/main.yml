@@ -18,9 +18,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+     
+      - name: Restore NuGet Packages
+        run: nuget restore Txiribimakula.ExpertWatch.sln
 
       - name: Setup MSBuild Path
         uses: warrenbuckley/Setup-MSBuild@v1
       
       - name: Build and Publish Web App
-        run: msbuild Txiribimakula.ExpertWatch.sln
+        run: msbuild Txiribimakula.ExpertWatch.sln /p:Configuration=Release
