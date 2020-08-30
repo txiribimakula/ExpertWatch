@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Globalization;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
@@ -9,9 +8,11 @@ namespace Txiribimakula.ExpertWatch.Drawing
     {
         public DrawablePoint(float x, float y) : base(x, y){
             Color = Colors.Black;
+            Box = new Box(x - 1, x + 1, y - 1, y + 1);
         }
         public DrawablePoint(float x, float y, IColor color) : base(x, y) {
             Color = color;
+            Box = new Box(x - 1, x + 1, y - 1, y + 1);
         }
 
         public IColor Color { get; set; }

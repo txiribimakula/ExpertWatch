@@ -7,7 +7,7 @@ namespace Txiribimakula.ExpertWatch.Graphics
     public class CoordinateSystem : ICoordinateSystem
     {
         private float localToWorldFactor;
-        private Box box;
+        private IBox box;
 
         private float scale;
         public float Scale {
@@ -37,7 +37,7 @@ namespace Txiribimakula.ExpertWatch.Graphics
             }
         }
 
-        public CoordinateSystem(float worldWidth, float worldHeight, Box box) {
+        public CoordinateSystem(float worldWidth, float worldHeight, IBox box) {
             this.box = box;
             scale = 1.1f;
             offset = new Point(0, 0);

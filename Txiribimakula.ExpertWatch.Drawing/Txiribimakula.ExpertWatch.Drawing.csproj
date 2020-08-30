@@ -51,6 +51,7 @@
     <Compile Include="Contracts\IDrawableVisitor.cs" />
     <Compile Include="CoordinateSystem.cs" />
     <Compile Include="DrawableArc.cs" />
+    <Compile Include="DrawableCollection.cs" />
     <Compile Include="DrawablePoint.cs" />
     <Compile Include="DrawableSegment.cs" />
     <Compile Include="DrawableVisitor.cs" />

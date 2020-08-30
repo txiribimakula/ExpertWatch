@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Drawing;
+using Txiribimakula.ExpertWatch.Geometries;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
     public class WatchItem : INotifyPropertyChanged
     {
         public WatchItem() {
-            Drawables = new ObservableCollection<IDrawable>();
+            Drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
         }
 
         private string name;
@@ -22,8 +23,8 @@ namespace Txiribimakula.ExpertWatch.Loading
             set { description = value; OnPropertyChanged(nameof(Description)); }
         }
 
-        private ObservableCollection<IDrawable> drawables;
-        public ObservableCollection<IDrawable> Drawables {
+        private DrawableCollection<IDrawable> drawables;
+        public DrawableCollection<IDrawable> Drawables {
             get { return drawables; }
             set { drawables = value; OnPropertyChanged(nameof(Drawables)); }
         }

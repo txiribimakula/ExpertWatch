@@ -53,5 +53,26 @@
             MaxY = maxY;
         }
 
+        public void Expand(IBox box) {
+            if (!IsValid) {
+                MinX = box.MinX;
+                MaxX = box.MaxX;
+                MinY = box.MinY;
+                MaxY = box.MaxY;
+            } else {
+                if (box.MinX < MinX) {
+                    MinX = box.MinX;
+                }
+                if (box.MaxX > MaxX) {
+                    MaxX = box.MaxX;
+                }
+                if (box.MinY < MinY) {
+                    MinY = box.MinY;
+                }
+                if (box.MaxY > MaxY) {
+                    MaxY = box.MaxY;
+                }
+            }
+        }
     }
 }

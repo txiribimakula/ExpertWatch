@@ -10,7 +10,7 @@ namespace Txiribimakula.ExpertWatch.Drawing
             DrawableVisitor = visitor;
         }
 
-        public void TransformGeometries(ObservableCollection<IDrawable> drawables) {
+        public void TransformGeometries(DrawableCollection<IDrawable> drawables) {
             foreach (var drawable in drawables) {
                 drawable.TransformGeometry(DrawableVisitor);
             }

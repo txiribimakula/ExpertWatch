@@ -41,7 +41,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         private void ResetView() {
-            ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, new Box(-10, 10, -10, 10));
+            IBox box = null;
+            foreach (var watchItem in WatchItems) {
+                if (box == null) {
+                    box = watchItem.Drawables[0].Box;
+                } else {
+                    box.Expand(watchItem.Drawables[0].Box);
+                }
+            }
+
+            ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, box);
             geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
 
             foreach (var watchItem in WatchItems) {

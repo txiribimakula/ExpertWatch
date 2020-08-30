@@ -9,5 +9,7 @@
         float HorizontalLength { get; }
         float VerticalLength { get; }
         bool IsValid { get; }
+
+        void Expand(IBox box);
     }
 }
