@@ -31,29 +31,18 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             FrameworkElement frameworkElement = (FrameworkElement)sender;
 
             ICoordinateSystem coordinateSystem = new CoordinateSystem((float)frameworkElement.ActualWidth, (float)frameworkElement.ActualHeight, new Box(-10, 10, -10, 10));
-            if (geoDrawer == null) {
-                geoDrawer = new GeometryDrawer(coordinateSystem);
-            } else {
-                IPoint currentOffset = geoDrawer.CoordinateSystem.Offset;
-                geoDrawer.CoordinateSystem = coordinateSystem;
-                geoDrawer.CoordinateSystem.Offset = currentOffset;
-                foreach (var watchItem in WatchItems) {
-                    geoDrawer.TransformGeometries(watchItem.Drawables);
-                }
-            }
+
+            DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
+            geoDrawer = new GeometryDrawer(visitor);
         }
 
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {
             ICoordinateSystem coordinateSystem = new CoordinateSystem((float)args.NewSize.Width, (float)args.NewSize.Height, new Box(-10, 10, -10, 10));
-            if (geoDrawer == null) {
-                geoDrawer = new GeometryDrawer(coordinateSystem);
-            } else {
-                IPoint currentOffset = geoDrawer.CoordinateSystem.Offset;
-                geoDrawer.CoordinateSystem = coordinateSystem;
-                geoDrawer.CoordinateSystem.Offset = currentOffset;
-                foreach (var watchItem in WatchItems) {
-                    geoDrawer.TransformGeometries(watchItem.Drawables);
-                }
+            IPoint currentOffset = geoDrawer.DrawableVisitor.CoordinateSystem.Offset;
+            geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
+            geoDrawer.DrawableVisitor.CoordinateSystem.Offset = currentOffset;
+            foreach (var watchItem in WatchItems) {
+                geoDrawer.TransformGeometries(watchItem.Drawables);
             }
         }
 

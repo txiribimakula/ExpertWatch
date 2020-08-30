@@ -1,16 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using Txiribimakula.ExpertWatch.Drawing.Contracts;
 
 namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class GeometryDrawer
     {
-        public ICoordinateSystem CoordinateSystem { get; set; }
         public DrawableVisitor DrawableVisitor { get; set; }
 
-        public GeometryDrawer(ICoordinateSystem coordinateSystem) {
-            CoordinateSystem = coordinateSystem;
-            DrawableVisitor = new DrawableVisitor(CoordinateSystem);
+        public GeometryDrawer(DrawableVisitor visitor) {
+            DrawableVisitor = visitor;
         }
 
         public void TransformGeometries(ObservableCollection<IDrawable> drawables) {
