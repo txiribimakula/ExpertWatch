@@ -9,10 +9,11 @@ namespace Txiribimakula.ExpertWatch
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             IArc arc = (IArc)value;
-
-            return "M" + arc.InitialPoint.X.ToString(CultureInfo.InvariantCulture) + "," + arc.InitialPoint.Y.ToString(CultureInfo.InvariantCulture) +
+            string path = "M" + arc.InitialPoint.X.ToString(CultureInfo.InvariantCulture) + "," + arc.InitialPoint.Y.ToString(CultureInfo.InvariantCulture) +
                 " A" + arc.Radius.ToString(CultureInfo.InvariantCulture) + "," + arc.Radius.ToString(CultureInfo.InvariantCulture) +
-                " 0 0 0 " + arc.FinalPoint.X.ToString(CultureInfo.InvariantCulture) + "," + arc.FinalPoint.Y.ToString(CultureInfo.InvariantCulture);
+                " " + arc.SweepAngle.ToString(CultureInfo.InvariantCulture) + " 0 1 " +
+                arc.FinalPoint.X.ToString(CultureInfo.InvariantCulture) + "," + arc.FinalPoint.Y.ToString(CultureInfo.InvariantCulture);
+            return path;
 
         }
 
