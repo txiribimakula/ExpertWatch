@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:drawing="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"
              xmlns:local="clr-namespace:Txiribimakula.ExpertWatch"
              mc:Ignorable="d"
@@ -26,38 +25,38 @@
                     <MenuItem Header="Reset View" Command="{Binding ResetViewCommand}"/>
                 </ContextMenu>
             </Grid.ContextMenu>
-            <wi:Interaction.Triggers>
-                <wi:EventTrigger EventName="Loaded">
-                    <ei:CallMethodAction
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="Loaded">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnLoaded" x:Name="loaded"/>
-                </wi:EventTrigger>
-                <wi:EventTrigger EventName="SizeChanged">
-                    <ei:CallMethodAction
+                </b:EventTrigger>
+                <b:EventTrigger EventName="SizeChanged">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnSizeChanged" x:Name="sizeChanged"/>
-                </wi:EventTrigger>
-                <wi:EventTrigger EventName="MouseDown">
-                    <ei:CallMethodAction
+                </b:EventTrigger>
+                <b:EventTrigger EventName="MouseDown">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnMouseDown" x:Name="mouseDown"/>
-                </wi:EventTrigger>
-                <wi:EventTrigger EventName="MouseUp">
-                    <ei:CallMethodAction
+                </b:EventTrigger>
+                <b:EventTrigger EventName="MouseUp">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnMouseUp" x:Name="mouseUp"/>
-                </wi:EventTrigger>
-                <wi:EventTrigger EventName="MouseMove">
-                    <ei:CallMethodAction
+                </b:EventTrigger>
+                <b:EventTrigger EventName="MouseMove">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnMouseMove" x:Name="mouseMove"/>
-                </wi:EventTrigger>
-                <wi:EventTrigger EventName="MouseWheel">
-                    <ei:CallMethodAction
+                </b:EventTrigger>
+                <b:EventTrigger EventName="MouseWheel">
+                    <b:CallMethodAction
                         TargetObject="{Binding}"
                         MethodName="OnMouseWheel" x:Name="mouseWheel"/>
-                </wi:EventTrigger>
-            </wi:Interaction.Triggers>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
             <ItemsControl ItemsSource="{Binding WatchItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
