@@ -47,6 +47,23 @@ namespace Txiribimakula.ExpertWatch.Drawing
                     minY = FinalPoint.Y;
                     maxY = InitialPoint.Y;
                 }
+            } else if(initialAngleQuadrant == 0 || finalAngleQuadrant == 0 && initialAngleQuadrant == 1 || finalAngleQuadrant == 1) {
+                IPoint quadrant0Point, quadrant1Point;
+                if(initialAngleQuadrant == 0) {
+                    quadrant0Point = InitialPoint;
+                    quadrant1Point = FinalPoint;
+                } else {
+                    quadrant0Point = FinalPoint;
+                    quadrant1Point = InitialPoint;
+                }
+                minX = quadrant1Point.X;
+                minY = CenterPoint.Y - Radius;
+                maxX = quadrant0Point.X;
+                if (InitialPoint.Y < FinalPoint.Y) {
+                    maxY = FinalPoint.Y;
+                } else {
+                    maxY = InitialPoint.Y;
+                }
             }
 
             Box = new Box(minX, maxX, minY, maxY);
