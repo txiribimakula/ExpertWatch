@@ -6,7 +6,7 @@ namespace Txiribimakula.ExpertWatch.Geometries
     {
         public float X { get; set; }
         public float Y { get; set; }
-        public IBox box { get; set; }
+        public IBox Box { get; set; }
 
         public Point(float x, float y) {
             X = x;

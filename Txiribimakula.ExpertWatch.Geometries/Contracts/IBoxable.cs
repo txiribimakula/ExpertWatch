@@ -2,6 +2,6 @@
 {
     public interface IBoxable
     {
-        IBox box { get; set; }
+        IBox Box { get; set; }
     }
 }

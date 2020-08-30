@@ -11,6 +11,6 @@ namespace Txiribimakula.ExpertWatch.Geometries
 
         public IPoint InitialPoint { get; set; }
         public IPoint FinalPoint { get; set; }
-        public IBox box { get; set; }
+        public IBox Box { get; set; }
     }
 }

@@ -17,6 +17,6 @@ namespace Txiribimakula.ExpertWatch.Geometries
         public float SweepAngle { get; set; }
         public float Radius { get; set; }
         public float Diameter => 2 * Radius;
-        public IBox box { get; set; }
+        public IBox Box { get; set; }
     }
 }
