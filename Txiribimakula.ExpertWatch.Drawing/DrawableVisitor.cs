@@ -21,8 +21,14 @@ namespace Txiribimakula.ExpertWatch.Drawing
         public IArc GetTransformedArc(IArc arc) {
             IPoint initialPoint = CoordinateSystem.ConvertPointToWorld(arc.InitialPoint);
             IPoint finalPoint = CoordinateSystem.ConvertPointToWorld(arc.FinalPoint);
+            IPoint centerPoint = CoordinateSystem.ConvertPointToWorld(arc.CenterPoint);
+            float initialAngle = CoordinateSystem.ConvertLengthToWorld(arc.InitialAngle);
+            float sweepAngle = CoordinateSystem.ConvertLengthToWorld(arc.SweepAngle);
             float radius = CoordinateSystem.ConvertLengthToWorld(arc.Radius);
-            return new Arc(initialPoint, finalPoint, radius);
+            return new Arc(centerPoint, initialAngle, sweepAngle, radius) {
+                InitialPoint = initialPoint,
+                FinalPoint = finalPoint
+            };
         }
 
         public IPoint GetTransformedPoint(IPoint point) {

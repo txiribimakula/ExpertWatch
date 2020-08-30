@@ -8,14 +8,14 @@ namespace Txiribimakula.ExpertWatch.Models
     public static class ArcInterpreter
     {
         public static IDrawable GetDrawable(ExpressionLoader expression) {
-            ExpressionLoader initialPointLoader = expression.GetMember("InitialPoint");
-            ExpressionLoader finalPointLoader = expression.GetMember("FinalPoint");
+            ExpressionLoader centerPointLoader = expression.GetMember("CenterPoint");
 
-            IPoint initialPoint = new Point(initialPointLoader.GetValue("X"), initialPointLoader.GetValue("Y"));
-            IPoint finalPoint = new Point(finalPointLoader.GetValue("X"), finalPointLoader.GetValue("Y"));
+            IPoint centerPoint = new Point(centerPointLoader.GetValue("X"), centerPointLoader.GetValue("Y"));
             float radius = expression.GetValue("Radius");
+            float initialAngle = expression.GetValue("InitialAngle");
+            float sweepAngle = expression.GetValue("SweepAngle");
 
-            return new DrawableArc(initialPoint, finalPoint, radius);
+            return new DrawableArc(centerPoint, initialAngle, sweepAngle, radius);
         }
     }
 }

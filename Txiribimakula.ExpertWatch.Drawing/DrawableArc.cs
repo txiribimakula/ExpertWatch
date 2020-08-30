@@ -1,19 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using System.Globalization;
+﻿using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
 namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawableArc : Arc, IDrawableArc {
-        public DrawableArc(IPoint initialPoint, IPoint finalPoint, float radius)
-            : base(initialPoint, finalPoint, radius) {
+        public DrawableArc(IPoint centerPoint, float initialAngle, float sweepAngle, float radius)
+            : base(centerPoint, initialAngle, sweepAngle, radius) {
             Color = Colors.Black;
         }
 
-        public DrawableArc(IPoint initialPoint, IPoint finalPoint, float radius, IColor color)
-            : base(initialPoint, finalPoint, radius) {
+        public DrawableArc(IPoint centerPoint, float initialAngle, float sweepAngle, float radius, IColor color)
+            : base(centerPoint, initialAngle, sweepAngle, radius) {
             Color = color;
         }
 

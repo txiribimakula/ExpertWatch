@@ -1,13 +1,23 @@
-﻿using Txiribimakula.ExpertWatch.Geometries.Contracts;
+﻿using System;
+using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
 namespace Txiribimakula.ExpertWatch.Geometries
 {
     public class Arc : IArc
     {
-        public Arc(IPoint initialPoint, IPoint finalPoint, float radius) {
-            InitialPoint = initialPoint;
-            FinalPoint = finalPoint;
+        public Arc(IPoint centerPoint, float initialAngle, float sweepAngle, float radius) {
+            CenterPoint = centerPoint;
+            InitialAngle = initialAngle;
+            SweepAngle = sweepAngle;
             Radius = radius;
+
+            InitialPoint = new Point(
+                centerPoint.X + (float)Math.Cos((initialAngle / 180) * Math.PI) * radius,
+                centerPoint.Y - (float)Math.Sin((initialAngle / 180) * Math.PI) * radius);
+
+            FinalPoint = new Point(
+               centerPoint.X + (float)Math.Cos(((initialAngle + sweepAngle) / 180) * Math.PI) * radius,
+               centerPoint.Y - (float)Math.Sin(((initialAngle + sweepAngle) / 180) * Math.PI) * radius);
 
             SetBox();
         }
