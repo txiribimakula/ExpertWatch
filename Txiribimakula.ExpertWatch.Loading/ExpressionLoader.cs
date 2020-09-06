@@ -4,10 +4,13 @@ namespace Txiribimakula.ExpertWatch.Loading
 {
     public class ExpressionLoader
     {
-        private Expression expression;
         public ExpressionLoader(Expression expression) {
             this.expression = expression;
+            Type = expression.Type;
         }
+
+        private Expression expression;
+        public string Type { get; set; }
 
         public ExpressionLoader GetMember(params string[] names) {
             Expression expression = this.expression;
@@ -24,6 +27,6 @@ namespace Txiribimakula.ExpertWatch.Loading
             }
             return float.Parse(expression.Value);
         }
-        public string Type { get { return this.expression.Type; } }
+
     }
-}
+} 
