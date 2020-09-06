@@ -2,7 +2,7 @@
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
-    public class InterpreterNode
+    public class BlueprintNode
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -11,6 +11,6 @@ namespace Txiribimakula.ExpertWatch.Loading
         public string Key { get; set; }
 
         [JsonProperty(PropertyName = "members")]
-        public InterpreterNode[] Members { get; set; }
+        public BlueprintNode[] Members { get; set; }
     }
 }

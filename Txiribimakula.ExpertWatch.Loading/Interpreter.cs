@@ -10,39 +10,36 @@ namespace Txiribimakula.ExpertWatch.Loading
     public class Interpreter : IInterpreter
     {
         public Interpreter() {
-            interpreters = new Dictionary<string, InterpreterNode>();
+            interpreters = new Dictionary<string, Blueprint>();
         }
 
         public Interpreter(string jsonText) {
-            interpreters = new Dictionary<string, InterpreterNode>();
-            InterpreterNode[] nodes = JsonConvert.DeserializeObject<InterpreterNode[]>(jsonText);
-            foreach (var node in nodes) {
-                interpreters.Add(node.Key, node);
+            interpreters = new Dictionary<string, Blueprint>();
+            Blueprint[] blueprints = JsonConvert.DeserializeObject<Blueprint[]>(jsonText);
+            foreach (var blueprint in blueprints) {
+                foreach (var key in blueprint.Keys) {
+                    interpreters.Add(key, blueprint);
+                }
             }
         }
 
-        private Dictionary<string, InterpreterNode> interpreters;
+        private Dictionary<string, Blueprint> interpreters;
 
         public IDrawable GetDrawable(ExpressionLoader expressionLoader) {
-            InterpreterNode interpreterNode;
-            interpreters.TryGetValue(expressionLoader.Type, out interpreterNode);
+            Blueprint interpreter;
+            interpreters.TryGetValue(expressionLoader.Type, out interpreter);
 
-            interpreterNode = interpreterNode.Members[0]; // create root object with only one member?
-
-            if (interpreterNode != null) {
+            if (interpreter != null) {
                 ExpressionLoader currentExpressionLoader = expressionLoader;
-                if (!string.IsNullOrWhiteSpace(interpreterNode.Name)) {
-                    currentExpressionLoader = currentExpressionLoader.GetMember(interpreterNode.Name);
-                }
                 IDrawable drawable = null;
-                if(interpreterNode.Key == "segment") {
-                    ISegment segment = GetSegment(currentExpressionLoader, interpreterNode);
+                if(interpreter.Root.Key == "segment") {
+                    ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
                     drawable = new DrawableSegment(segment);
-                } else if (interpreterNode.Key == "arc") {
-                    IArc arc = GetArc(currentExpressionLoader, interpreterNode);
+                } else if (interpreter.Root.Key == "arc") {
+                    IArc arc = GetArc(currentExpressionLoader, interpreter.Root);
                     drawable = new DrawableArc(arc);
-                } else if (interpreterNode.Key == "point") {
-                    IPoint point = GetPoint(currentExpressionLoader, interpreterNode);
+                } else if (interpreter.Root.Key == "point") {
+                    IPoint point = GetPoint(currentExpressionLoader, interpreter.Root);
                     drawable = new DrawablePoint(point);
                 }
                 return drawable;
@@ -52,7 +49,7 @@ namespace Txiribimakula.ExpertWatch.Loading
 
         }
 
-        private IArc GetArc(ExpressionLoader expressionLoader, InterpreterNode interpreterNode) {
+        private IArc GetArc(ExpressionLoader expressionLoader, BlueprintNode interpreterNode) {
             ExpressionLoader currentExpressionLoader = expressionLoader;
             if (!string.IsNullOrWhiteSpace(interpreterNode.Name)) {
                 currentExpressionLoader = currentExpressionLoader.GetMember(interpreterNode.Name);
@@ -87,7 +84,7 @@ namespace Txiribimakula.ExpertWatch.Loading
             }
         }
 
-        private ISegment GetSegment(ExpressionLoader expressionLoader, InterpreterNode interpreterNode) {
+        private ISegment GetSegment(ExpressionLoader expressionLoader, BlueprintNode interpreterNode) {
             ExpressionLoader currentExpressionLoader = expressionLoader;
             if (!string.IsNullOrWhiteSpace(interpreterNode.Name)) {
                 currentExpressionLoader = currentExpressionLoader.GetMember(interpreterNode.Name);
@@ -114,7 +111,7 @@ namespace Txiribimakula.ExpertWatch.Loading
             }
         }
 
-        private IPoint GetPoint(ExpressionLoader expressionLaoder, InterpreterNode interpreterNode) {
+        private IPoint GetPoint(ExpressionLoader expressionLaoder, BlueprintNode interpreterNode) {
             ExpressionLoader currentExpressionLoader = expressionLaoder;
             if (!string.IsNullOrWhiteSpace(interpreterNode.Name)) {
                 currentExpressionLoader = currentExpressionLoader.GetMember(interpreterNode.Name);
