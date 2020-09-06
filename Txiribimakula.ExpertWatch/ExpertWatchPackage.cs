@@ -10,6 +10,7 @@ namespace Txiribimakula.ExpertWatch
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(ExpertWatchPackage.PackageGuidString)]
     [ProvideToolWindow(typeof(ExpertWatch))]
+    [ProvideBindingPath]
     public sealed class ExpertWatchPackage : AsyncPackage
     {
         public const string PackageGuidString = "2f2f2923-9433-4dcb-b3b6-373c61e85461";
