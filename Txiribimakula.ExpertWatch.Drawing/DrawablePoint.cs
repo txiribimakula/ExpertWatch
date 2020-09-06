@@ -6,7 +6,11 @@ namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawablePoint : Point, IDrawablePoint
     {
-        public DrawablePoint(float x, float y) : base(x, y){
+        public DrawablePoint(IPoint point) : base(point.X, point.Y) {
+            Color = Colors.Black;
+            Box = new Box(x - 1, x + 1, y - 1, y + 1);
+        }
+        public DrawablePoint(float x, float y) : base(x, y) {
             Color = Colors.Black;
             Box = new Box(x - 1, x + 1, y - 1, y + 1);
         }

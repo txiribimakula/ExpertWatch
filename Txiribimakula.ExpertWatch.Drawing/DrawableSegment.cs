@@ -6,6 +6,10 @@ namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawableSegment : Segment, IDrawableSegment
     {
+        public DrawableSegment(ISegment segment): base(segment.InitialPoint, segment.FinalPoint) {
+            Color = Colors.Black;
+            SetBox();
+        }
         public DrawableSegment(IPoint initialPoint, IPoint finalPoint) : base(initialPoint, finalPoint) {
             Color = Colors.Black;
             SetBox();

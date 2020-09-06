@@ -5,12 +5,15 @@ using Txiribimakula.ExpertWatch.Geometries.Contracts;
 namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class DrawableArc : Arc, IDrawableArc {
+        public DrawableArc(IArc arc) : base(arc.CenterPoint, arc.InitialAngle, arc.SweepAngle, arc.Radius) {
+            Color = Colors.Black;
+            SetBox();
+        }
         public DrawableArc(IPoint centerPoint, float initialAngle, float sweepAngle, float radius)
             : base(centerPoint, initialAngle, sweepAngle, radius) {
             Color = Colors.Black;
             SetBox();
         }
-
         public DrawableArc(IPoint centerPoint, float initialAngle, float sweepAngle, float radius, IColor color)
             : base(centerPoint, initialAngle, sweepAngle, radius) {
             Color = color;
