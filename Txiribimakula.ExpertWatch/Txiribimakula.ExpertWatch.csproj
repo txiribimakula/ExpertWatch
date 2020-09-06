@@ -70,12 +70,10 @@
     <Compile Include="Converters\ArcToPathConverter.cs" />
     <Compile Include="ExpertWatch.cs" />
     <Compile Include="ExpertWatchCommand.cs" />
-    <Compile Include="Models\Interpreters\InterpreterNode.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Views\ExpertWatchWindow.xaml.cs">
       <DependentUpon>ExpertWatchWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Interpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpertWatchPackage.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />

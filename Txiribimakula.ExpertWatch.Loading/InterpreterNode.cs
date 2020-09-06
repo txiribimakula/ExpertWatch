@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Txiribimakula.ExpertWatch.Models.Interpreters
+namespace Txiribimakula.ExpertWatch.Loading
 {
     public class InterpreterNode
     {

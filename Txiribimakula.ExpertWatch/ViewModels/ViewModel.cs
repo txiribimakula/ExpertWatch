@@ -9,7 +9,6 @@ using Txiribimakula.ExpertWatch.Drawing.Contracts;
 using Txiribimakula.ExpertWatch.Loading;
 using Txiribimakula.ExpertWatch.Models;
 using Microsoft.Win32;
-using Txiribimakula.ExpertWatch.Models.Interpreters;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {

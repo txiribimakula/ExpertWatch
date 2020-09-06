@@ -4,9 +4,8 @@ using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 using Txiribimakula.ExpertWatch.Loading;
-using Txiribimakula.ExpertWatch.Models.Interpreters;
 
-namespace Txiribimakula.ExpertWatch.Models
+namespace Txiribimakula.ExpertWatch.Loading
 {
     public class Interpreter : IInterpreter
     {
