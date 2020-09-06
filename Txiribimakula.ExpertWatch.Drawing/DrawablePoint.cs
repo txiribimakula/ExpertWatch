@@ -8,7 +8,7 @@ namespace Txiribimakula.ExpertWatch.Drawing
     {
         public DrawablePoint(IPoint point) : base(point.X, point.Y) {
             Color = Colors.Black;
-            Box = new Box(x - 1, x + 1, y - 1, y + 1);
+            Box = new Box(point.X - 1, point.X + 1, point.Y - 1, point.Y + 1);
         }
         public DrawablePoint(float x, float y) : base(x, y) {
             Color = Colors.Black;
