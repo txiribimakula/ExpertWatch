@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
-using Txiribimakula.ExpertWatch.Loading;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
