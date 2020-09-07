@@ -14,10 +14,12 @@ namespace Txiribimakula.ExpertWatch.Views
         internal BlueprintsOptionPage BlueprintsOptionPage;
 
         public void Initialize() {
-            Blueprint[] blueprints = JsonConvert.DeserializeObject<Blueprint[]>(BlueprintsOptionPage.Blueprints);
-            foreach (Blueprint blueprint in blueprints) {
-                foreach (string key in blueprint.Keys) {
-                    dataGridView.Rows.Add(key, "");
+            if(BlueprintsOptionPage.Blueprints != null) {
+                Blueprint[] blueprints = JsonConvert.DeserializeObject<Blueprint[]>(BlueprintsOptionPage.Blueprints);
+                foreach (Blueprint blueprint in blueprints) {
+                    foreach (string key in blueprint.Keys) {
+                        dataGridView.Rows.Add(key, "");
+                    }
                 }
             }
         }

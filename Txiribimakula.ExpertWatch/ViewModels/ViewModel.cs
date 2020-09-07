@@ -20,8 +20,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             loader = new Loader(debugger, interpreter);
         }
 
-        public void OnToolsOptionsBlueprintsChanged(string optionString) {
-            loader.Interpreter = new Interpreter(optionString);
+        public void OnToolsOptionsBlueprintsChanged(string blueprints) {
+            loader.Interpreter = new Interpreter(blueprints);
         }
 
         private Loader loader;
