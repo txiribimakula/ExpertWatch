@@ -24,7 +24,7 @@ namespace Txiribimakula.ExpertWatch.Views
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void button_Click(object sender, EventArgs e) {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";

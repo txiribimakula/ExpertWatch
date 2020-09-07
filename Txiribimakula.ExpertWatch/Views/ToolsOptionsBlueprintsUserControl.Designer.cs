@@ -34,17 +34,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // button
             // 
             this.button.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button.Location = new System.Drawing.Point(427, 5);
             this.button.Margin = new System.Windows.Forms.Padding(5);
-            this.button.Name = "button1";
+            this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(104, 20);
             this.button.TabIndex = 1;
             this.button.Text = "Import blueprints...";
             this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.button1_Click);
+            this.button.Click += new System.EventHandler(this.button_Click);
             // 
             // tableLayoutPanel1
             // 
