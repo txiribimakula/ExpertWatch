@@ -11,9 +11,9 @@ namespace Txiribimakula.ExpertWatch
 
         public static readonly Guid CommandSet = new Guid("AB6200EA-5C89-4F3C-AEEB-1374F1F578FB");
 
-        private readonly Package package;
+        public readonly ExpertWatchPackage package;
 
-        private ExpertWatchCommand(Package package, OleMenuCommandService commandService) {
+        private ExpertWatchCommand(ExpertWatchPackage package, OleMenuCommandService commandService) {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             if (package == null) {

@@ -20,6 +20,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             loader = new Loader(debugger, interpreter);
         }
 
+        public void OnToolsOptionsBlueprintsChanged(string optionString) {
+            loader.Interpreter = new Interpreter(optionString);
+        }
+
         private Loader loader;
         private GeometryDrawer geoDrawer;
         public ObservableCollection<WatchItem> WatchItems { get; set; }

@@ -15,6 +15,9 @@ namespace Txiribimakula.ExpertWatch
             DTE2 DTE2 = ExpertWatchCommand.Instance.ServiceProvider.GetService(typeof(DTE)) as DTE2;
 
             ViewModel viewModel = new ViewModel(DTE2.Debugger);
+            BlueprintsOptionPage page = (BlueprintsOptionPage)ExpertWatchCommand.Instance.package.GetDialogPage(typeof(BlueprintsOptionPage));
+            page.OptionChangedEvent += viewModel.OnToolsOptionsBlueprintsChanged;
+            viewModel.OnToolsOptionsBlueprintsChanged(page.Blueprints);
             ExpertWatchWindow window = new ExpertWatchWindow();
             window.DataContext = viewModel;
             this.Content = window;

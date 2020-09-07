@@ -77,11 +77,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpertWatchPackage.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Views\MyUserControl.cs">
+    <Compile Include="Views\ToolsOptionsBlueprintsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\MyUserControl.Designer.cs">
-      <DependentUpon>MyUserControl.cs</DependentUpon>
+    <Compile Include="Views\ToolsOptionsBlueprintsUserControl.Designer.cs">
+      <DependentUpon>ToolsOptionsBlueprintsUserControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +135,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MyUserControl.resx">
-      <DependentUpon>MyUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ToolsOptionsBlueprintsUserControl.resx">
+      <DependentUpon>ToolsOptionsBlueprintsUserControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
