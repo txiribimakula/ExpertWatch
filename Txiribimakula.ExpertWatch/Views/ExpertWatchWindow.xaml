@@ -93,15 +93,6 @@
                     <DataGridTextColumn Header="Description" Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Config">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="Click">
-                        <b:CallMethodAction
-                        TargetObject="{Binding}"
-                        MethodName="OnConfigClick" x:Name="click"/>
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </Button>
         </DockPanel>
     </Grid>
 </UserControl>

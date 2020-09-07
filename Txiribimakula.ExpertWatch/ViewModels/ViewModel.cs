@@ -8,7 +8,6 @@ using Txiribimakula.ExpertWatch.Graphics;
 using Txiribimakula.ExpertWatch.Drawing.Contracts;
 using Txiribimakula.ExpertWatch.Loading;
 using Txiribimakula.ExpertWatch.Models;
-using Microsoft.Win32;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
@@ -143,20 +142,6 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             geoDrawer.TransformGeometries(item.Drawables);
             sender.Description = item.Description;
             sender.Drawables = item.Drawables;
-        }
-
-        public void OnConfigClick(object sender, System.Windows.RoutedEventArgs e) {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "Expert Debug Template (*.*)|*.*";
-            openFileDialog1.FilterIndex = 0;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == true) {
-                string text = System.IO.File.ReadAllText(openFileDialog1.FileName);
-                loader.Interpreter = new Interpreter(text);
-            }
         }
     }
 }
