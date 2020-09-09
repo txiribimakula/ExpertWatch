@@ -60,12 +60,17 @@
             <ItemsControl ItemsSource="{Binding WatchItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas ClipToBounds="True"/>
+                        <Grid ClipToBounds="True"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <ItemsControl ItemsSource="{Binding Drawables}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas ClipToBounds="True"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.Resources>
                                 <DataTemplate DataType="{x:Type drawing:DrawableSegment}">
                                     <Path Opacity="0.7" Stroke="Black" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>

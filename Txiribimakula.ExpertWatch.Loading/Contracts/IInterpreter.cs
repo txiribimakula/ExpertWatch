@@ -4,6 +4,6 @@ namespace Txiribimakula.ExpertWatch.Loading
 {
     public interface IInterpreter
     {
-        IDrawable GetDrawable(ExpressionLoader expression);
+        DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expression);
     }
 }

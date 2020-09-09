@@ -24,24 +24,32 @@ namespace Txiribimakula.ExpertWatch.Loading
 
         private Dictionary<string, Blueprint> interpreters;
 
-        public IDrawable GetDrawable(ExpressionLoader expressionLoader) {
+        public DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expressionLoader) {
             Blueprint interpreter;
             interpreters.TryGetValue(expressionLoader.Type, out interpreter);
-
+            //expressionLoader.GetDataMembers();
             if (interpreter != null) {
                 ExpressionLoader currentExpressionLoader = expressionLoader;
-                IDrawable drawable = null;
+                DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
                 if(interpreter.Root.Key == "segment") {
                     ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
-                    drawable = new DrawableSegment(segment);
+                    drawables.Add(new DrawableSegment(segment));
                 } else if (interpreter.Root.Key == "arc") {
                     IArc arc = GetArc(currentExpressionLoader, interpreter.Root);
-                    drawable = new DrawableArc(arc);
+                    drawables.Add(new DrawableArc(arc));
                 } else if (interpreter.Root.Key == "point") {
                     IPoint point = GetPoint(currentExpressionLoader, interpreter.Root);
-                    drawable = new DrawablePoint(point);
+                    drawables.Add(new DrawablePoint(point));
+                } else if (interpreter.Root.Key == "list") {
+                    ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
+                    for (int i = 0; i < expressionLoaders.Length - 1; i++) {
+                        DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"));
+                        foreach (var item in loopdrawables) {
+                            drawables.Add(item);
+                        }
+                    }
                 }
-                return drawable;
+                return drawables;
             } else {
                 return null;
             }

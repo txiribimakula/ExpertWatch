@@ -29,11 +29,11 @@ namespace Txiribimakula.ExpertWatch.Loading
             if (expression != null && !string.IsNullOrEmpty(expression.Type)) {
                 watchItem.Description = expression.Type;
                 ExpressionLoader expressionLoader = new ExpressionLoader(expression);
-                IDrawable drawable = null;
+                DrawableCollection<IDrawable> drawables = null;
                 if (Interpreter != null) {
-                    drawable = Interpreter.GetDrawable(expressionLoader);
+                    drawables = Interpreter.GetDrawables(expressionLoader);
                 }
-                watchItem.Drawables.Add(drawable);
+                watchItem.Drawables = drawables;
             } else {
                 watchItem.Description = "Variable could not be found.";
             }
