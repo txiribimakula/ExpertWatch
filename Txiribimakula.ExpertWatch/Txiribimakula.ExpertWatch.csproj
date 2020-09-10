@@ -65,6 +65,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\DrawablesToProgressConverter.cs" />
     <Compile Include="Converters\SegmentToPathConverter.cs" />
     <Compile Include="Converters\PointToPathConverter.cs" />
     <Compile Include="Converters\ArcToPathConverter.cs" />
@@ -85,6 +86,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="expert-debug-test.json" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

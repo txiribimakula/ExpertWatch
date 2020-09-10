@@ -6,12 +6,14 @@
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:drawing="clr-namespace:Txiribimakula.ExpertWatch.Drawing;assembly=Txiribimakula.ExpertWatch.Drawing"
              xmlns:local="clr-namespace:Txiribimakula.ExpertWatch"
+             xmlns:converters="clr-namespace:Txiribimakula.ExpertWatch.Converters"
              mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="100">
     <UserControl.Resources>
         <local:ArcToPathConverter x:Key="ArcToPathConverter"/>
         <local:PointToPathConverter x:Key="PointToPathConverter"/>
         <local:SegmentToPathConverter x:Key="SegmentToPathConverter"/>
+        <converters:DrawablesToProgressConverter x:Key="DrawablesToProgressConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -95,7 +97,16 @@
             <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{Binding WatchItems}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTemplateColumn Header="Description" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <ProgressBar Value="{Binding Drawables, Converter={StaticResource DrawablesToProgressConverter}}" IsIndeterminate="False" />
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Description}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
