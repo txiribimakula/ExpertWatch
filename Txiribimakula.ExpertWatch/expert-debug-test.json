@@ -1,0 +1,98 @@
+[
+	{
+		"keys": ["Txiribimakula.ExpertWatch.Geometries.Segment", "Txiribimakula.ExpertWatch.Geometries.Contracts.ISegment {Txiribimakula.ExpertWatch.Geometries.Segment}"],
+		"root":
+		{
+			"key": "segment",
+			"members": [
+				{
+					"key": "initialPoint",
+					"name": "InitialPoint",
+					"members": [
+						{
+							"name": "X",
+							"key": "x"
+						},
+						{
+							"name": "Y",
+							"key": "y"
+						}
+					]
+				},
+				{
+					"key": "finalPoint",
+					"name": "FinalPoint",
+					"members": [
+						{
+							"name": "X",
+							"key": "x"
+						},
+						{
+							"name": "Y",
+							"key": "y"
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"keys": ["Txiribimakula.ExpertWatch.Geometries.Arc"],
+		"root":
+		{
+			"key": "arc",
+			"members": [
+				{
+					"key": "centerPoint",
+					"name": "CenterPoint",
+					"members": [
+						{
+							"name": "X",
+							"key": "x"
+						},
+						{
+							"name": "Y",
+							"key": "y"
+						}
+					]
+				},
+				{
+					"key": "initialAngle",
+					"name": "InitialAngle"
+				},
+				{
+					"key": "sweepAngle",
+					"name": "SweepAngle"
+				},
+				{
+					"key": "radius",
+					"name": "Radius"
+				}
+			]
+		}
+	},
+	{
+		"keys": ["Txiribimakula.ExpertWatch.Geometries.Point"],
+		"root":
+		{
+			"key": "point",
+			"members": [
+				{
+					"name": "X",
+					"key": "x"
+				},
+				{
+					"name": "Y",
+					"key": "y"
+				}
+			]
+		}
+	},
+	{
+		"keys": ["System.Collections.Generic.List<Txiribimakula.ExpertWatch.Geometries.Segment>"],
+		"root":
+		{
+			"key": "list"
+		}
+	}
+]
