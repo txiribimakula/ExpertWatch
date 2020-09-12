@@ -107,18 +107,12 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Load">
+                    <DataGridTemplateColumn Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Cancel">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:CallMethodAction
-                                            TargetObject="{Binding}"
-                                            MethodName="OnCancelTokenClick" x:Name="cancelTokenClick"/>
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </Button>
+                                <CheckBox x:Name="select" HorizontalAlignment="Center"
+                                    IsChecked="{Binding Path=IsLoading, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                </CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
