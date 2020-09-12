@@ -142,7 +142,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD100:Evite métodos async void", Justification = "Used for an event")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
         private async void OnWatchItemNameChangedAsync(WatchItem sender) {
-            WatchItem item = await loader.LoadAsync(sender.Name);
+            WatchItem item = await loader.LoadAsync(sender.Name, sender.TokenSource.Token);
             geoDrawer.TransformGeometries(item.Drawables);
             sender.Description = item.Description;
             sender.Drawables = item.Drawables;

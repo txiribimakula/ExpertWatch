@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 
@@ -9,6 +11,14 @@ namespace Txiribimakula.ExpertWatch.Loading
     {
         public WatchItem() {
             Drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
+            TokenSource = new CancellationTokenSource();
+        }
+
+        public CancellationTokenSource TokenSource { get; set; }
+
+        public void OnCancelTokenClick(object sender, EventArgs e) {
+            TokenSource.Cancel();
+            TokenSource = new CancellationTokenSource();
         }
 
         private string name;

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
@@ -24,7 +25,7 @@ namespace Txiribimakula.ExpertWatch.Loading
 
         private Dictionary<string, Blueprint> interpreters;
 
-        public DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expressionLoader) {
+        public DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expressionLoader, CancellationToken token) {
             Blueprint interpreter;
             interpreters.TryGetValue(expressionLoader.Type, out interpreter);
             //expressionLoader.GetDataMembers();
@@ -43,9 +44,12 @@ namespace Txiribimakula.ExpertWatch.Loading
                 } else if (interpreter.Root.Key == "list") {
                     ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
                     for (int i = 0; i < expressionLoaders.Length - 1; i++) {
-                        DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"));
+                        DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"), token);
                         foreach (var item in loopdrawables) {
                             drawables.Add(item);
+                        }
+                        if(token.IsCancellationRequested) {
+                            return drawables;
                         }
                     }
                 }

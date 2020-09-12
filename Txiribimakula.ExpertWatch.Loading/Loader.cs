@@ -15,9 +15,7 @@ namespace Txiribimakula.ExpertWatch.Loading
             this.Interpreter = interpreterSelector;
         }
 
-        public async Task<WatchItem> LoadAsync(string newInputName) {
-            var source = new CancellationTokenSource();
-            var token = source.Token;
+        public async Task<WatchItem> LoadAsync(string newInputName, CancellationToken token) {
             return await Task.Run(() => Load(newInputName, token), token);
         }
 
@@ -31,7 +29,7 @@ namespace Txiribimakula.ExpertWatch.Loading
                 ExpressionLoader expressionLoader = new ExpressionLoader(expression);
                 DrawableCollection<IDrawable> drawables = null;
                 if (Interpreter != null) {
-                    drawables = Interpreter.GetDrawables(expressionLoader);
+                    drawables = Interpreter.GetDrawables(expressionLoader, token);
                 }
                 watchItem.Drawables = drawables;
             } else {
