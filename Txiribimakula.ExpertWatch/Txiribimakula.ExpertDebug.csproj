@@ -33,8 +33,8 @@
     <ProjectGuid>{AB798862-8DBD-4182-9D2C-CF43ABB67288}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Txiribimakula.ExpertWatch</RootNamespace>
-    <AssemblyName>Txiribimakula.ExpertWatch</AssemblyName>
+    <RootNamespace>Txiribimakula.ExpertDebug</RootNamespace>
+    <AssemblyName>Txiribimakula.ExpertDebug</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
