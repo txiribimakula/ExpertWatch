@@ -31,7 +31,8 @@ namespace Txiribimakula.ExpertWatch.Loading
             if (interpreter != null) {
                 ExpressionLoader currentExpressionLoader = expressionLoader;
                 DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
-                if(interpreter.Root.Key == "segment") {
+                drawables.TotalCount = 1;
+                if (interpreter.Root.Key == "segment") {
                     ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
                     drawables.Add(new DrawableSegment(segment));
                 } else if (interpreter.Root.Key == "arc") {
@@ -42,6 +43,7 @@ namespace Txiribimakula.ExpertWatch.Loading
                     drawables.Add(new DrawablePoint(point));
                 } else if (interpreter.Root.Key == "list") {
                     ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
+                    drawables.TotalCount = expressionLoaders.Length - 1;
                     for (int i = 0; i < expressionLoaders.Length - 1; i++) {
                         DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"), token);
                         foreach (var item in loopdrawables) {

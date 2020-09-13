@@ -12,6 +12,7 @@ namespace Txiribimakula.ExpertWatch.Drawing
         }
 
         public IBox Box { get; set; }
+        public int TotalCount { get; set; }
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public event PropertyChangedEventHandler PropertyChanged;

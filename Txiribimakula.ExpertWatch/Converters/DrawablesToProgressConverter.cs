@@ -11,11 +11,7 @@ namespace Txiribimakula.ExpertWatch.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             DrawableCollection<IDrawable> drawables = (DrawableCollection<IDrawable>)value;
 
-            if(drawables.Count > 0) {
-                return 100;
-            } else {
-                return 0;
-            }
+            return ((drawables.Count * 1.0) / (drawables.TotalCount * 1.0)) * 100.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
