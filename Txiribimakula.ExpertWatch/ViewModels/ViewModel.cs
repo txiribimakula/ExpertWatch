@@ -142,7 +142,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {
-            sender.IsLoading = true;
+            OnWatchItemLoadingChangedAsync(sender);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD100:Evite métodos async void", Justification = "Used for an event")]
