@@ -16,6 +16,7 @@ namespace Txiribimakula.ExpertWatch.Views
         public void Initialize() {
             if(BlueprintsOptionPage.Blueprints != null) {
                 Blueprint[] blueprints = JsonConvert.DeserializeObject<Blueprint[]>(BlueprintsOptionPage.Blueprints);
+                dataGridView.Rows.Clear();
                 foreach (Blueprint blueprint in blueprints) {
                     foreach (string key in blueprint.Keys) {
                         dataGridView.Rows.Add(key, "");
