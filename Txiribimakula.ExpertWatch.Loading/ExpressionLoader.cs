@@ -1,4 +1,6 @@
 ﻿using EnvDTE;
+using System.Runtime.InteropServices;
+using Txiribimakula.ExpertWatch.Loading.Exceptions;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
@@ -15,7 +17,11 @@ namespace Txiribimakula.ExpertWatch.Loading
         public ExpressionLoader GetMember(params string[] names) {
             Expression expression = this.expression;
             foreach (var name in names) {
-                expression = expression.DataMembers.Item(name);
+                try {
+                    expression = expression.DataMembers.Item(name);
+                } catch(COMException ex) {
+                    throw new MemberNotFoundException(expression.Type, name);
+                }
             }
             return new ExpressionLoader(expression);
         }

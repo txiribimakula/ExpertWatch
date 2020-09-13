@@ -4,6 +4,7 @@ using System.Threading;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
+using Txiribimakula.ExpertWatch.Loading.Exceptions;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
@@ -32,27 +33,31 @@ namespace Txiribimakula.ExpertWatch.Loading
                 ExpressionLoader currentExpressionLoader = expressionLoader;
                 DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
                 drawables.TotalCount = 1;
-                if (interpreter.Root.Key == "segment") {
-                    ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
-                    drawables.Add(new DrawableSegment(segment));
-                } else if (interpreter.Root.Key == "arc") {
-                    IArc arc = GetArc(currentExpressionLoader, interpreter.Root);
-                    drawables.Add(new DrawableArc(arc));
-                } else if (interpreter.Root.Key == "point") {
-                    IPoint point = GetPoint(currentExpressionLoader, interpreter.Root);
-                    drawables.Add(new DrawablePoint(point));
-                } else if (interpreter.Root.Key == "list") {
-                    ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
-                    drawables.TotalCount = expressionLoaders.Length - 1;
-                    for (int i = 0; i < expressionLoaders.Length - 1; i++) {
-                        DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"), token);
-                        foreach (var item in loopdrawables) {
-                            drawables.Add(item);
-                        }
-                        if(token.IsCancellationRequested) {
-                            return drawables;
+                try {
+                    if (interpreter.Root.Key == "segment") {
+                        ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
+                        drawables.Add(new DrawableSegment(segment));
+                    } else if (interpreter.Root.Key == "arc") {
+                        IArc arc = GetArc(currentExpressionLoader, interpreter.Root);
+                        drawables.Add(new DrawableArc(arc));
+                    } else if (interpreter.Root.Key == "point") {
+                        IPoint point = GetPoint(currentExpressionLoader, interpreter.Root);
+                        drawables.Add(new DrawablePoint(point));
+                    } else if (interpreter.Root.Key == "list") {
+                        ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
+                        drawables.TotalCount = expressionLoaders.Length - 1;
+                        for (int i = 0; i < expressionLoaders.Length - 1; i++) {
+                            DrawableCollection<IDrawable> loopdrawables = GetDrawables(currentExpressionLoader.GetMember("[" + i + "]"), token);
+                            foreach (var item in loopdrawables) {
+                                drawables.Add(item);
+                            }
+                            if (token.IsCancellationRequested) {
+                                return drawables;
+                            }
                         }
                     }
+                } catch(LoadingException ex) {
+                    drawables.Error = ex.Message;
                 }
                 return drawables;
             } else {

@@ -102,7 +102,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <ProgressBar Value="{Binding Drawables, Converter={StaticResource DrawablesToProgressConverter}}" IsIndeterminate="False" />
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Description}" />
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Drawables.Error}" />
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

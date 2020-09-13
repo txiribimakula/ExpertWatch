@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blueprint.cs" />
+    <Compile Include="Exceptions\LoadingException.cs" />
     <Compile Include="Interpreter.cs" />
     <Compile Include="BlueprintNode.cs" />
     <Compile Include="WatchItem.cs" />
