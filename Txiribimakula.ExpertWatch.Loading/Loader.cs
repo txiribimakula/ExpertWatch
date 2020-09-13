@@ -33,7 +33,7 @@ namespace Txiribimakula.ExpertWatch.Loading
                 }
                 watchItem.Drawables = drawables;
             } else {
-                watchItem.Description = "Variable could not be found.";
+                watchItem.Drawables.Error = "Variable could not be found.";
             }
             return watchItem;
         }

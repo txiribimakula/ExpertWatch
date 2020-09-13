@@ -28,10 +28,10 @@ namespace Txiribimakula.ExpertWatch.Loading
 
         public DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expressionLoader, CancellationToken token) {
             Blueprint interpreter;
+            DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0, 0, 0, 0));
             interpreters.TryGetValue(expressionLoader.Type, out interpreter);
             if (interpreter != null) {
                 ExpressionLoader currentExpressionLoader = expressionLoader;
-                DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
                 drawables.TotalCount = 1;
                 try {
                     if (interpreter.Root.Key == "segment") {
@@ -59,11 +59,10 @@ namespace Txiribimakula.ExpertWatch.Loading
                 } catch(LoadingException ex) {
                     drawables.Error = ex.Message;
                 }
-                return drawables;
             } else {
-                return null;
+                drawables.Error = "No interpreter found";
             }
-
+            return drawables;
         }
 
         private IArc GetArc(ExpressionLoader expressionLoader, BlueprintNode interpreterNode) {
