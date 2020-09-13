@@ -11,7 +11,6 @@ namespace Txiribimakula.ExpertWatch.Loading
     {
         public WatchItem() {
             Drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
-            TokenSource = new CancellationTokenSource();
             isLoading = true;
         }
 
@@ -20,9 +19,14 @@ namespace Txiribimakula.ExpertWatch.Loading
         private bool isLoading;
         public bool IsLoading {
             get { return isLoading; }
-            set { isLoading = value; TokenSource.Cancel();
-                TokenSource = new CancellationTokenSource();
+            set { 
+                isLoading = value;
+                OnLoadingChanged();
             }
+        }
+        public event WatchItemEventHandler IsLoadingChanged;
+        private void OnLoadingChanged() {
+            IsLoadingChanged?.Invoke(this);
         }
 
         private string name;

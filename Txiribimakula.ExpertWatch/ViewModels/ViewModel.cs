@@ -107,14 +107,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             if (e.NewItems != null) {
                 foreach (WatchItem item in e.NewItems) {
                     if(item != null) {
-                        item.NameChanged += OnWatchItemNameChangedAsync;
+                        item.NameChanged += OnWatchItemNameChanged;
+                        item.IsLoadingChanged += OnWatchItemLoadingChangedAsync;
                     }
                 }
             }
             if (e.OldItems != null) {
                 foreach (WatchItem item in e.OldItems) {
                     if (item != null) {
-                        item.NameChanged -= OnWatchItemNameChangedAsync;
+                        item.NameChanged -= OnWatchItemNameChanged;
+                        item.IsLoadingChanged -= OnWatchItemLoadingChangedAsync;
                     }
                 }
             }
@@ -139,13 +141,26 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             }
         }
 
+        private void OnWatchItemNameChanged(WatchItem sender) {
+            sender.IsLoading = true;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD100:Evite métodos async void", Justification = "Used for an event")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
-        private async void OnWatchItemNameChangedAsync(WatchItem sender) {
-            WatchItem item = await loader.LoadAsync(sender.Name, sender.TokenSource.Token);
-            geoDrawer.TransformGeometries(item.Drawables);
-            sender.Description = item.Description;
-            sender.Drawables = item.Drawables;
+        private async void OnWatchItemLoadingChangedAsync(WatchItem sender) {
+            if(sender.IsLoading) {
+                sender.TokenSource = new System.Threading.CancellationTokenSource();
+                WatchItem item = await loader.LoadAsync(sender.Name, sender.TokenSource.Token);
+                geoDrawer.TransformGeometries(item.Drawables);
+                sender.Description = item.Description;
+                sender.Drawables = item.Drawables;
+                sender.TokenSource.Dispose();
+                sender.TokenSource = null;
+            } else {
+                if (sender.TokenSource != null) {
+                    sender.TokenSource.Cancel();
+                }
+            }
         }
     }
 }
