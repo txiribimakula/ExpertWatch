@@ -28,7 +28,6 @@ namespace Txiribimakula.ExpertWatch.Loading
         public DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expressionLoader, CancellationToken token) {
             Blueprint interpreter;
             interpreters.TryGetValue(expressionLoader.Type, out interpreter);
-            //expressionLoader.GetDataMembers();
             if (interpreter != null) {
                 ExpressionLoader currentExpressionLoader = expressionLoader;
                 DrawableCollection<IDrawable> drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
