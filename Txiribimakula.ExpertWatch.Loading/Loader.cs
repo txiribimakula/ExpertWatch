@@ -1,7 +1,6 @@
 ﻿using EnvDTE;
 using Txiribimakula.ExpertWatch.Drawing;
 using System.Threading.Tasks;
-using System.Threading;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
@@ -15,27 +14,24 @@ namespace Txiribimakula.ExpertWatch.Loading
             this.Interpreter = interpreterSelector;
         }
 
-        public async Task<WatchItem> LoadAsync(string newInputName, CancellationToken token) {
-            return await Task.Run(() => Load(newInputName, token), token);
+        public async Task LoadAsync(WatchItem item) {
+            await Task.Run(() => Load(item), item.TokenSource.Token);
         }
 
-        private WatchItem Load(string newInputName, CancellationToken token) {
-            WatchItem watchItem = new WatchItem();
-            
-            Expression expression = debugger.GetExpression(newInputName);
+        private void Load(WatchItem item) {
+            Expression expression = debugger.GetExpression(item.Name);
 
             if (expression != null && !string.IsNullOrEmpty(expression.Type)) {
-                watchItem.Description = expression.Type;
+                item.Description = expression.Type;
                 ExpressionLoader expressionLoader = new ExpressionLoader(expression);
                 DrawableCollection<IDrawable> drawables = null;
                 if (Interpreter != null) {
-                    drawables = Interpreter.GetDrawables(expressionLoader, token);
+                    drawables = Interpreter.GetDrawables(expressionLoader, item.TokenSource.Token);
                 }
-                watchItem.Drawables = drawables;
+                item.Drawables = drawables;
             } else {
-                watchItem.Drawables.Error = "Variable could not be found.";
+                item.Drawables.Error = "Variable could not be found.";
             }
-            return watchItem;
         }
     }
 }

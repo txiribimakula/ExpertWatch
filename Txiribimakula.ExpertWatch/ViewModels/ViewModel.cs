@@ -150,10 +150,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private async void OnWatchItemLoadingChangedAsync(WatchItem sender) {
             if(sender.IsLoading) {
                 sender.TokenSource = new System.Threading.CancellationTokenSource();
-                WatchItem item = await loader.LoadAsync(sender.Name, sender.TokenSource.Token);
-                geoDrawer.TransformGeometries(item.Drawables);
-                sender.Description = item.Description;
-                sender.Drawables = item.Drawables;
+                await loader.LoadAsync(sender);
+                geoDrawer.TransformGeometries(sender.Drawables);
                 sender.TokenSource.Dispose();
                 sender.TokenSource = null;
             } else {
