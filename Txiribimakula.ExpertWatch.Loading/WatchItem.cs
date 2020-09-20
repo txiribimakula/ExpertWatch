@@ -16,13 +16,15 @@ namespace Txiribimakula.ExpertWatch.Loading
             get { return isLoading; }
             set { 
                 isLoading = value;
-                OnLoadingChanged();
+                if(isLoading) {
+                    IsLoadingActivated?.Invoke(this);
+                } else {
+                    IsLoadingCancelled?.Invoke(this);
+                }
             }
         }
-        public event WatchItemEventHandler IsLoadingChanged;
-        private void OnLoadingChanged() {
-            IsLoadingChanged?.Invoke(this);
-        }
+        public event WatchItemEventHandler IsLoadingActivated;
+        public event WatchItemEventHandler IsLoadingCancelled;
 
         private string name;
         public string Name {

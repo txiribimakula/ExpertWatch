@@ -110,7 +110,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 foreach (WatchItem item in e.NewItems) {
                     if(item != null) {
                         item.NameChanged += OnWatchItemNameChanged;
-                        item.IsLoadingChanged += OnWatchItemLoadingChangedAsync;
+                        item.IsLoadingActivated += OnWatchItemLoading;
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 foreach (WatchItem item in e.OldItems) {
                     if (item != null) {
                         item.NameChanged -= OnWatchItemNameChanged;
-                        item.IsLoadingChanged -= OnWatchItemLoadingChangedAsync;
+                        item.IsLoadingActivated -= OnWatchItemLoading;
                     }
                 }
             }
@@ -144,14 +144,18 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {
-            OnWatchItemLoadingChangedAsync(sender);
+            OnWatchItemLoading(sender);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
-        private void OnWatchItemLoadingChangedAsync(WatchItem watchItem) {
+        private void OnWatchItemLoading(WatchItem watchItem) {
             if (watchItem.IsLoading) {
                 watchItem.Drawables.ClearAndNotify();
                 BackgroundWorker backgroundWorker = new BackgroundWorker();
+                backgroundWorker.WorkerSupportsCancellation = true;
+                watchItem.IsLoadingCancelled += (sender) => {
+                    backgroundWorker.CancelAsync();
+                };
                 backgroundWorker.ProgressChanged += (sender, arguments) => {
                     IDrawable drawable = (IDrawable)arguments.UserState;
                     geoDrawer.TransformGeometry(drawable);
