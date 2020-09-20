@@ -13,11 +13,11 @@ namespace Txiribimakula.ExpertWatch.Geometries
 
             InitialPoint = new Point(
                 centerPoint.X + (float)Math.Cos((initialAngle / 180) * Math.PI) * radius,
-                centerPoint.Y - (float)Math.Sin((initialAngle / 180) * Math.PI) * radius);
+                centerPoint.Y + (float)Math.Sin((initialAngle / 180) * Math.PI) * radius);
 
             FinalPoint = new Point(
                centerPoint.X + (float)Math.Cos(((initialAngle + sweepAngle) / 180) * Math.PI) * radius,
-               centerPoint.Y - (float)Math.Sin(((initialAngle + sweepAngle) / 180) * Math.PI) * radius);
+               centerPoint.Y + (float)Math.Sin(((initialAngle + sweepAngle) / 180) * Math.PI) * radius);
         }
 
         public IPoint InitialPoint { get; set; }
