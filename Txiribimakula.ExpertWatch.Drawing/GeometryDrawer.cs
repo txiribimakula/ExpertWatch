@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace Txiribimakula.ExpertWatch.Drawing
+﻿namespace Txiribimakula.ExpertWatch.Drawing
 {
     public class GeometryDrawer
     {
@@ -14,6 +12,10 @@ namespace Txiribimakula.ExpertWatch.Drawing
             foreach (var drawable in drawables) {
                 drawable.TransformGeometry(DrawableVisitor);
             }
+        }
+
+        public void TransformGeometry(IDrawable drawable) {
+            drawable.TransformGeometry(DrawableVisitor);
         }
     }
 }
