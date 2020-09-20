@@ -1,10 +1,9 @@
-﻿using System.Threading;
-using Txiribimakula.ExpertWatch.Drawing;
+﻿using System.ComponentModel;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
     public interface IInterpreter
     {
-        DrawableCollection<IDrawable> GetDrawables(ExpressionLoader expression, CancellationToken token);
+        void GetDrawables(ExpressionLoader expression, BackgroundWorker backgroundWorker);
     }
 }

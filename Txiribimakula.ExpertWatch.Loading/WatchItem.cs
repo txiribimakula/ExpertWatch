@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Threading;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 
@@ -11,8 +10,6 @@ namespace Txiribimakula.ExpertWatch.Loading
             Drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
             isLoading = true;
         }
-
-        public CancellationTokenSource TokenSource { get; set; }
 
         private bool isLoading;
         public bool IsLoading {

@@ -8,6 +8,8 @@ using Txiribimakula.ExpertWatch.Graphics;
 using Txiribimakula.ExpertWatch.Drawing.Contracts;
 using Txiribimakula.ExpertWatch.Loading;
 using Txiribimakula.ExpertWatch.Models;
+using System.ComponentModel;
+using Txiribimakula.ExpertWatch.Loading.Exceptions;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
@@ -48,9 +50,9 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             IBox box = null;
             foreach (var watchItem in WatchItems) {
                 if (box == null) {
-                    box = watchItem.Drawables[0].Box;
+                    // box = watchItem.Drawables[0].Box;
                 } else {
-                    box.Expand(watchItem.Drawables[0].Box);
+                    // box.Expand(watchItem.Drawables[0].Box);
                 }
             }
 
@@ -145,18 +147,22 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             OnWatchItemLoadingChangedAsync(sender);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD100:Evite métodos async void", Justification = "Used for an event")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
-        private async void OnWatchItemLoadingChangedAsync(WatchItem sender) {
-            if(sender.IsLoading) {
-                sender.TokenSource = new System.Threading.CancellationTokenSource();
-                await loader.LoadAsync(sender);
-                geoDrawer.TransformGeometries(sender.Drawables);
-                sender.TokenSource.Dispose();
-                sender.TokenSource = null;
-            } else {
-                if (sender.TokenSource != null) {
-                    sender.TokenSource.Cancel();
+        private void OnWatchItemLoadingChangedAsync(WatchItem watchItem) {
+            if (watchItem.IsLoading) {
+                BackgroundWorker backgroundWorker = new BackgroundWorker();
+                backgroundWorker.ProgressChanged += (sender, arguments) => {
+                    IDrawable drawable = (IDrawable)arguments.UserState;
+                    geoDrawer.TransformGeometry(drawable);
+                    watchItem.Drawables.AddAndNotify(drawable);
+                    watchItem.Drawables.TotalCount += 1;
+                };
+                backgroundWorker.RunWorkerCompleted += (sender, arguments) => {
+                };
+                try {
+                    loader.Load(watchItem, backgroundWorker);
+                } catch(LoadingException ex) {
+                    watchItem.Drawables.Error = ex.Message;
                 }
             }
         }
