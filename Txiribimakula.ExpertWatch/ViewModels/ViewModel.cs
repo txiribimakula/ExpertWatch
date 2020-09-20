@@ -150,6 +150,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
         private void OnWatchItemLoadingChangedAsync(WatchItem watchItem) {
             if (watchItem.IsLoading) {
+                watchItem.Drawables.ClearAndNotify();
                 BackgroundWorker backgroundWorker = new BackgroundWorker();
                 backgroundWorker.ProgressChanged += (sender, arguments) => {
                     IDrawable drawable = (IDrawable)arguments.UserState;

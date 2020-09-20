@@ -27,6 +27,11 @@ namespace Txiribimakula.ExpertWatch.Drawing
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, element));
         }
 
+        public void ClearAndNotify() {
+            Clear();
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
         public void RemoveAndNotify(IDrawable element) {
             Remove(element);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, element));
