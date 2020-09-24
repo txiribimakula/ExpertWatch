@@ -101,6 +101,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             senderElement.ReleaseMouseCapture();
         }
 
+        public void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+            CurrentCursorPoint = null;
+        }
+
         public void OnMouseMove(object sender, System.Windows.Input.MouseEventArgs e) {
             IInputElement senderElement = (IInputElement)sender;
             System.Windows.Point canvasClickPoint = e.GetPosition(senderElement);

@@ -54,6 +54,11 @@
                         TargetObject="{Binding}"
                         MethodName="OnMouseMove" x:Name="mouseMove"/>
                 </b:EventTrigger>
+                <b:EventTrigger EventName="MouseLeave">
+                    <b:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="OnMouseLeave" x:Name="mouseLeave"/>
+                </b:EventTrigger>
                 <b:EventTrigger EventName="MouseWheel">
                     <b:CallMethodAction
                         TargetObject="{Binding}"
