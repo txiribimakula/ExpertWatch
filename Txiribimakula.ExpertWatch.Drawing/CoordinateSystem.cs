@@ -57,6 +57,10 @@ namespace Txiribimakula.ExpertWatch.Graphics
             return new Point(ConvertXToWorld(point.X), ConvertYToWorld(point.Y));
         }
 
+        public IPoint ConvertPointToLocal(IPoint point) {
+            return new Point(ConvertXToLocal(point.X), ConvertYToLocal(point.Y));
+        }
+
         public float ConvertXToWorld(float x) {
             return (x - LocalMinX) * localToWorldFactor;
         }

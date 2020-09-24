@@ -66,6 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converters\DrawablesToProgressConverter.cs" />
+    <Compile Include="Converters\PointToTextConverter.cs" />
     <Compile Include="Converters\SegmentToPathConverter.cs" />
     <Compile Include="Converters\PointToPathConverter.cs" />
     <Compile Include="Converters\ArcToPathConverter.cs" />

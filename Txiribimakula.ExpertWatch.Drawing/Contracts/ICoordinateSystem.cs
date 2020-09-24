@@ -17,6 +17,7 @@ namespace Txiribimakula.ExpertWatch.Drawing.Contracts
         float LocalMaxY { get; set; }
 
         IPoint ConvertPointToWorld(IPoint point);
+        IPoint ConvertPointToLocal(IPoint point);
         float ConvertXToWorld(float x);
         float ConvertYToWorld(float y);
         float ConvertLengthToWorld(float length);

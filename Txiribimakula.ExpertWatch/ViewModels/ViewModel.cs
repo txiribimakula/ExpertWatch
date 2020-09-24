@@ -13,7 +13,7 @@ using Txiribimakula.ExpertWatch.Loading.Exceptions;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
-    public class ViewModel {
+    public class ViewModel : INotifyPropertyChanged {
         public ViewModel(Debugger debugger) {
             WatchItems = new ObservableCollection<WatchItem>();
             WatchItems.CollectionChanged += OnWatchItemsCollectionChanged;
@@ -26,9 +26,20 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             loader.Interpreter = new Interpreter(blueprints);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string prop) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
         private Loader loader;
         private GeometryDrawer geoDrawer;
         public ObservableCollection<WatchItem> WatchItems { get; set; }
+
+        private IPoint currentCursorPoint;
+        public IPoint CurrentCursorPoint {
+            get { return currentCursorPoint; }
+            set { currentCursorPoint = value; OnPropertyChanged("CurrentCursorPoint"); }
+        }
 
         private bool isMiddleMouseDown;
         private IPoint lastClickPoint;
@@ -93,15 +104,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         public void OnMouseMove(object sender, System.Windows.Input.MouseEventArgs e) {
             IInputElement senderElement = (IInputElement)sender;
             System.Windows.Point canvasClickPoint = e.GetPosition(senderElement);
-            IPoint clickPoint = new Geometries.Point((float)canvasClickPoint.X, (float)canvasClickPoint.Y);
+            IPoint currentCursorPoint = new Geometries.Point((float)canvasClickPoint.X, (float)canvasClickPoint.Y);
+            CurrentCursorPoint = geoDrawer.DrawableVisitor.CoordinateSystem.ConvertPointToLocal(currentCursorPoint);
             if (isMiddleMouseDown) {
-                float incrementalX = clickPoint.X - lastClickPoint.X;
-                float incrementalY = clickPoint.Y - lastClickPoint.Y;
+                float incrementalX = currentCursorPoint.X - lastClickPoint.X;
+                float incrementalY = currentCursorPoint.Y - lastClickPoint.Y;
                 geoDrawer.DrawableVisitor.CoordinateSystem.Offset = new Geometries.Point(incrementalX, incrementalY);
                 foreach (var watchItem in WatchItems) {
                     geoDrawer.TransformGeometries(watchItem.Drawables);
                 }
-                lastClickPoint = clickPoint;
+                lastClickPoint = currentCursorPoint;
             }
         }
 
