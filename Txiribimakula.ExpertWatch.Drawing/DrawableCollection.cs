@@ -20,6 +20,11 @@ namespace Txiribimakula.ExpertWatch.Drawing
 
         public void AddAndNotify(IDrawable element) {
             Add(element);
+            if(Box == null) {
+                Box = element.Box;
+            } else {
+                Box.Expand(element.Box);
+            }
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, element));
         }
 
