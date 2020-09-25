@@ -160,6 +160,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {
+            sender.Drawables.Clear();
             OnWatchItemLoading(sender);
         }
 
