@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
 
@@ -35,33 +36,80 @@ namespace Txiribimakula.ExpertWatch.Drawing
             var initialAngleQuadrant = GetQuadrant(InitialAngle);
             var finalAngleQuadrant = GetQuadrant(InitialAngle + SweepAngle);
 
-            if (initialAngleQuadrant == finalAngleQuadrant) {
+            List<string> crossedSemiAxes = new List<string>();
+
+            int currentQuadrant = initialAngleQuadrant;
+            while (currentQuadrant != finalAngleQuadrant) {
+                if (SweepAngle > 0) {
+                    currentQuadrant++;
+                    if (currentQuadrant == 4) {
+                        currentQuadrant = 0;
+                    }
+                    switch (currentQuadrant) {
+                        case 0:
+                            crossedSemiAxes.Add("xPositive");
+                            break;
+                        case 1:
+                            crossedSemiAxes.Add("yPositive");
+                            break;
+                        case 2:
+                            crossedSemiAxes.Add("xNegative");
+                            break;
+                        case 3:
+                            crossedSemiAxes.Add("yNegative");
+                            break;
+                    }
+                } else {
+                    currentQuadrant--;
+                    if (currentQuadrant == -1) {
+                        currentQuadrant = 3;
+                    }
+                    switch (currentQuadrant) {
+                        case 0:
+                            crossedSemiAxes.Add("yPositive");
+                            break;
+                        case 1:
+                            crossedSemiAxes.Add("xNegative");
+                            break;
+                        case 2:
+                            crossedSemiAxes.Add("yNegative");
+                            break;
+                        case 3:
+                            crossedSemiAxes.Add("xPositive");
+                            break;
+                    }
+                }
+            }
+            if (crossedSemiAxes.Contains("xNegative")) {
+                minX = CenterPoint.X - Radius;
+            } else {
                 if (InitialPoint.X < FinalPoint.X) {
                     minX = InitialPoint.X;
-                    maxX = FinalPoint.X;
                 } else {
                     minX = FinalPoint.X;
+                }
+            }
+            if (crossedSemiAxes.Contains("xPositive")) {
+                maxX = CenterPoint.X + Radius;
+            } else {
+                if (InitialPoint.X < FinalPoint.X) {
+                    maxX = FinalPoint.X;
+                } else {
                     maxX = InitialPoint.X;
                 }
+            }
+            if (crossedSemiAxes.Contains("yNegative")) {
+                minY = CenterPoint.Y - Radius;
+            } else {
                 if (InitialPoint.Y < FinalPoint.Y) {
                     minY = InitialPoint.Y;
-                    maxY = FinalPoint.Y;
                 } else {
                     minY = FinalPoint.Y;
-                    maxY = InitialPoint.Y;
                 }
-            } else if(initialAngleQuadrant == 0 || finalAngleQuadrant == 0 && initialAngleQuadrant == 1 || finalAngleQuadrant == 1) {
-                IPoint quadrant0Point, quadrant1Point;
-                if(initialAngleQuadrant == 0) {
-                    quadrant0Point = InitialPoint;
-                    quadrant1Point = FinalPoint;
-                } else {
-                    quadrant0Point = FinalPoint;
-                    quadrant1Point = InitialPoint;
-                }
-                minX = quadrant1Point.X;
-                minY = CenterPoint.Y - Radius;
-                maxX = quadrant0Point.X;
+            }
+            if (crossedSemiAxes.Contains("yPositive")) {
+                maxY = CenterPoint.Y + Radius;
+            } else {
                 if (InitialPoint.Y < FinalPoint.Y) {
                     maxY = FinalPoint.Y;
                 } else {
