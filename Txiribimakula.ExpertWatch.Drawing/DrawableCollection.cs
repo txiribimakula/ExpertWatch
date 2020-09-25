@@ -37,5 +37,10 @@ namespace Txiribimakula.ExpertWatch.Drawing
             Remove(element);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, element));
         }
+
+        public void Reset() {
+            Clear();
+            Box = null;
+        }
     }
 }
