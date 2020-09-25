@@ -8,7 +8,7 @@
             DrawableVisitor = visitor;
         }
 
-        public void TransformGeometries(DrawableCollection<IDrawable> drawables) {
+        public void TransformGeometries(DrawableCollection drawables) {
             foreach (var drawable in drawables) {
                 drawable.TransformGeometry(DrawableVisitor);
             }

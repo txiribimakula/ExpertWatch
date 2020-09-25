@@ -7,7 +7,7 @@ namespace Txiribimakula.ExpertWatch.Loading
     public class WatchItem : INotifyPropertyChanged
     {
         public WatchItem() {
-            Drawables = new DrawableCollection<IDrawable>(new Box(0,0,0,0));
+            Drawables = new DrawableCollection();
             isLoading = true;
         }
 
@@ -38,8 +38,8 @@ namespace Txiribimakula.ExpertWatch.Loading
             set { description = value; OnPropertyChanged(nameof(Description)); }
         }
 
-        private DrawableCollection<IDrawable> drawables;
-        public DrawableCollection<IDrawable> Drawables {
+        private DrawableCollection drawables;
+        public DrawableCollection Drawables {
             get { return drawables; }
             set { drawables = value; OnPropertyChanged(nameof(Drawables)); }
         }
