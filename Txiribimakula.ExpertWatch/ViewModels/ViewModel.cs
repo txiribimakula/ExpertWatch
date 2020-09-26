@@ -54,10 +54,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
             geoDrawer = new GeometryDrawer(visitor);
 
-            ResetViewCommand = new RelayCommand(parameter => ResetView());
+            ResetViewCommand = new RelayCommand(parameter => ResetView((float)frameworkElement.ActualWidth / (float)frameworkElement.ActualHeight));
         }
 
-        private void ResetView() {
+        private void ResetView(float windowRatio) {
             IBox box = null;
             foreach (var watchItem in WatchItems) {
                 if (box == null) {
@@ -65,6 +65,13 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 } else {
                     box.Expand(watchItem.Drawables.Box);
                 }
+            }
+
+            float drawablesRatio = box.HorizontalLength / box.VerticalLength;
+            if (drawablesRatio > windowRatio) {
+                float verticalIncrement = (box.VerticalLength * (drawablesRatio / windowRatio)) - box.VerticalLength;
+                box.MaxY += verticalIncrement / 2;
+                box.MinY -= verticalIncrement / 2;
             }
 
             ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, box);
