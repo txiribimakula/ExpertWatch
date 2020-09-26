@@ -24,5 +24,7 @@ namespace Txiribimakula.ExpertWatch.Drawing.Contracts
         float ConvertXToLocal(float x);
         float ConvertYToLocal(float y);
         float ConvertLengthToLocal(float length);
+
+        void ReCalculate(float worldWidth, float worldHeight);
     }
 }

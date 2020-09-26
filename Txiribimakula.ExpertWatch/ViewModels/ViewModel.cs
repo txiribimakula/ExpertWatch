@@ -83,10 +83,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {
-            ICoordinateSystem coordinateSystem = new CoordinateSystem((float)args.NewSize.Width, (float)args.NewSize.Height, new Box(-10, 10, -10, 10));
-            IPoint currentOffset = geoDrawer.DrawableVisitor.CoordinateSystem.Offset;
-            geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
-            geoDrawer.DrawableVisitor.CoordinateSystem.Offset = currentOffset;
+            geoDrawer.DrawableVisitor.CoordinateSystem.ReCalculate((float)args.NewSize.Width, (float)args.NewSize.Height);
             foreach (var watchItem in WatchItems) {
                 geoDrawer.TransformGeometries(watchItem.Drawables);
             }
