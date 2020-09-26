@@ -25,7 +25,7 @@
         <Grid Grid.Row="0" Background="White" Cursor="Cross">
             <Grid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Reset View" Command="{Binding ResetViewCommand}"/>
+                    <MenuItem Header="Autofit" Command="{Binding AutoFitCommand}"/>
                 </ContextMenu>
             </Grid.ContextMenu>
             <b:Interaction.Triggers>

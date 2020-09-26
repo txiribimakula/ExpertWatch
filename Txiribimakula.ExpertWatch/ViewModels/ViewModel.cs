@@ -44,7 +44,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private bool isMiddleMouseDown;
         private IPoint lastClickPoint;
 
-        public RelayCommand ResetViewCommand { get; set; }
+        public RelayCommand AutoFitCommand { get; set; }
 
         public void OnLoaded(object sender, RoutedEventArgs e) {
             FrameworkElement frameworkElement = (FrameworkElement)sender;
@@ -54,10 +54,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
             geoDrawer = new GeometryDrawer(visitor);
 
-            ResetViewCommand = new RelayCommand(parameter => ResetView((float)frameworkElement.ActualWidth / (float)frameworkElement.ActualHeight));
+            AutoFitCommand = new RelayCommand(parameter => AutoFit((float)frameworkElement.ActualWidth / (float)frameworkElement.ActualHeight));
         }
 
-        private void ResetView(float windowRatio) {
+        private void AutoFit(float windowRatio) {
             IBox box = null;
             foreach (var watchItem in WatchItems) {
                 if (box == null) {
