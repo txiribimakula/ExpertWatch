@@ -181,7 +181,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                     IDrawable drawable = (IDrawable)arguments.UserState;
                     geoDrawer.TransformGeometry(drawable);
                     watchItem.Drawables.AddAndNotify(drawable);
-                    watchItem.Drawables.TotalCount += 1;
+                    watchItem.Drawables.Progress = arguments.ProgressPercentage;
                 };
                 backgroundWorker.RunWorkerCompleted += (sender, arguments) => {
                 };

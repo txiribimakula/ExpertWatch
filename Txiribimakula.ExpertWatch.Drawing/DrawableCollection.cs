@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Geometries;
@@ -8,7 +9,12 @@ namespace Txiribimakula.ExpertWatch.Drawing
     public class DrawableCollection : Collection<IDrawable>, INotifyCollectionChanged, INotifyPropertyChanged
     {
         public IBox Box { get; set; }
-        public int TotalCount { get; set; }
+
+        private int progress;
+        public int Progress {
+            get { return progress; }
+            set { progress = value; NotifyPropertyChanged(nameof(Progress)); }
+        }
 
         private string error;
         public string Error {

@@ -13,7 +13,6 @@
         <local:ArcToPathConverter x:Key="ArcToPathConverter"/>
         <local:PointToPathConverter x:Key="PointToPathConverter"/>
         <local:SegmentToPathConverter x:Key="SegmentToPathConverter"/>
-        <converters:DrawablesToProgressConverter x:Key="DrawablesToProgressConverter"/>
         <converters:PointToTextConverter x:Key="PointToTextConverter"/>
     </UserControl.Resources>
     <Grid>
@@ -108,7 +107,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <ProgressBar Value="{Binding Drawables, Converter={StaticResource DrawablesToProgressConverter}}" IsIndeterminate="False" />
+                                    <ProgressBar Value="{Binding Drawables.Progress}" IsIndeterminate="False" Minimum="0" Maximum="100" />
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Drawables.Error}" />
                                 </Grid>
                             </DataTemplate>
