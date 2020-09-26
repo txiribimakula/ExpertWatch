@@ -35,34 +35,43 @@ namespace Txiribimakula.ExpertWatch.Loading
             Blueprint interpreter;
             interpreters.TryGetValue(expressionLoader.Type, out interpreter);
             if (interpreter != null) {
-                ExpressionLoader currentExpressionLoader = expressionLoader;
-                if (interpreter.Root.Key == "segment") {
-                    ISegment segment = GetSegment(currentExpressionLoader, interpreter.Root);
-                    DrawableSegment drawableSegment = new DrawableSegment(segment);
-                    backgroundWorker.ReportProgress(1, drawableSegment);
-                } else if (interpreter.Root.Key == "arc") {
-                    IArc arc = GetArc(currentExpressionLoader, interpreter.Root);
-                    DrawableArc drawableArc = new DrawableArc(arc);
-                    backgroundWorker.ReportProgress(1, drawableArc);
-                } else if (interpreter.Root.Key == "point") {
-                    IPoint point = GetPoint(currentExpressionLoader, interpreter.Root);
-                    DrawablePoint drawablePoint = new DrawablePoint(point);
-                    backgroundWorker.ReportProgress(1, drawablePoint);
-                } else if (interpreter.Root.Key == "list") {
-                    ExpressionLoader[] expressionLoaders = currentExpressionLoader.GetMembers();
-                    for (int i = 0; i < expressionLoaders.Length - 1; i++) {
-                        DoGetDrawables(currentExpressionLoader.GetMember("[" + i + "]"), backgroundWorker);
+                if (interpreter.Root.Key == "list") {
+                    ExpressionLoader[] expressionLoaders = expressionLoader.GetMembers();
+                    float totalCount = expressionLoaders.Length - 1;
+                    for (int i = 0; i < totalCount; i++) {
+                        Blueprint nextInterpreter;
+                        interpreters.TryGetValue(expressionLoaders[i].Type, out nextInterpreter);
+                        IDrawable nextDrawable = GetDrawable(expressionLoaders[i], nextInterpreter);
+                        float progress = ((i + 1) / totalCount) * 100;
+                        backgroundWorker.ReportProgress(Convert.ToInt32(progress), nextDrawable);
                         if (backgroundWorker.CancellationPending) {
                             return;
                         }
                     }
+                } else {
+                    IDrawable drawable = GetDrawable(expressionLoader, interpreter);
+                    backgroundWorker.ReportProgress(100, drawable);
                 }
             } else {
                 throw new LoadingException("No interpreter found");
             }
         }
 
-        
+        private IDrawable GetDrawable(ExpressionLoader expressionLoader, Blueprint interpreter) {
+            if (interpreter.Root.Key == "segment") {
+                ISegment segment = GetSegment(expressionLoader, interpreter.Root);
+                return new DrawableSegment(segment);
+            } else if (interpreter.Root.Key == "arc") {
+                IArc arc = GetArc(expressionLoader, interpreter.Root);
+                return new DrawableArc(arc);
+            } else if (interpreter.Root.Key == "point") {
+                IPoint point = GetPoint(expressionLoader, interpreter.Root);
+                return new DrawablePoint(point);
+            } else {
+                return null;
+            }
+        }        
+
 
         public void GetDrawables(ExpressionLoader expressionLoader, BackgroundWorker backgroundWorker) {
             backgroundWorker.DoWork += backgroundWorker_DoWork;
