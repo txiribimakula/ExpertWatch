@@ -164,13 +164,12 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {
-            sender.Drawables.Reset();
             OnWatchItemLoading(sender);
         }
 
         private void OnWatchItemLoading(WatchItem watchItem) {
             if (watchItem.IsLoading) {
-                watchItem.Drawables.ClearAndNotify();
+                watchItem.Drawables.ResetAndNotify();
                 BackgroundWorker backgroundWorker = new BackgroundWorker();
                 backgroundWorker.WorkerSupportsCancellation = true;
                 watchItem.IsLoadingCancelled += (sender) => {
