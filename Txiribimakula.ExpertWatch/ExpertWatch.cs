@@ -9,6 +9,8 @@ namespace Txiribimakula.ExpertWatch
     [Guid("6FD34CCE-6A7A-4016-878E-6A639BD79D69")]
     class ExpertWatch : ToolWindowPane
     {
+        DebuggerEvents DebuggerEvents;
+
         public ExpertWatch() : base(null) {
             this.Caption = "Expert Watch";
 
@@ -21,6 +23,8 @@ namespace Txiribimakula.ExpertWatch
             ExpertWatchWindow window = new ExpertWatchWindow();
             window.DataContext = viewModel;
             this.Content = window;
+            DebuggerEvents = DTE2.Events.DebuggerEvents;
+            DebuggerEvents.OnEnterBreakMode += viewModel.OnEnterBreakMode;
         }
     }
 }

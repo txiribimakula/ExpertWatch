@@ -26,6 +26,12 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             loader.Interpreter = new Interpreter(blueprints);
         }
 
+        public void OnEnterBreakMode(dbgEventReason reason, ref dbgExecutionAction executionAction) {
+            foreach (var watchItem in WatchItems) {
+                OnWatchItemLoading(watchItem);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string prop) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
