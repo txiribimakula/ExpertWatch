@@ -14,19 +14,12 @@ namespace Txiribimakula.ExpertWatch
         public readonly ExpertWatchPackage package;
 
         private ExpertWatchCommand(ExpertWatchPackage package, OleMenuCommandService commandService) {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            this.package = package ?? throw new ArgumentNullException(nameof(package));
+            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            if (package == null) {
-                throw new ArgumentNullException("package");
-            }
-
-            this.package = package;
-
-            if (commandService != null) {
-                var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.ShowToolWindow, menuCommandID);
-                commandService.AddCommand(menuItem);
-            }
+            var menuCommandID = new CommandID(CommandSet, CommandId);
+            var menuItem = new MenuCommand(this.ShowToolWindow, menuCommandID);
+            commandService.AddCommand(menuItem);
         }
 
         public static ExpertWatchCommand Instance {
