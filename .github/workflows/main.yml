@@ -23,10 +23,10 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.2
      
       - name: Restore NuGet Packages
-        run: nuget restore Txiribimakula.ExpertWatch.sln
+        run: nuget restore Txiribimakula.ExpertDebug.sln
 
       - name: Setup MSBuild Path
         uses: warrenbuckley/Setup-MSBuild@v1
       
       - name: Build and Publish Web App
-        run: msbuild Txiribimakula.ExpertWatch.sln /p:Configuration=Release
+        run: msbuild Txiribimakula.ExpertDebug.sln /p:Configuration=Release
