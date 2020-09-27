@@ -14,6 +14,7 @@
         <local:PointToPathConverter x:Key="PointToPathConverter"/>
         <local:SegmentToPathConverter x:Key="SegmentToPathConverter"/>
         <converters:PointToTextConverter x:Key="PointToTextConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -73,7 +74,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ItemsControl ItemsSource="{Binding Drawables}">
+                        <ItemsControl ItemsSource="{Binding Drawables}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <Canvas ClipToBounds="True"/>
@@ -112,6 +113,20 @@
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="auto" CanUserResize="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="select" HorizontalAlignment="Center"
+                                    IsChecked="{Binding Path=IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                </CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Image Source="pack://application:,,,/Txiribimakula.ExpertDebug;component/Resources/eye.png" Width="15" Height="15"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>

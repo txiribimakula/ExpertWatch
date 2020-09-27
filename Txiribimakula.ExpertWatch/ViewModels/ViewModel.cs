@@ -66,9 +66,9 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private void AutoFit(float windowRatio) {
             IBox box = null;
             foreach (var watchItem in WatchItems) {
-                if (box == null) {
+                if (box == null && watchItem.IsVisible) {
                     box = (IBox)watchItem.Drawables.Box.Clone();
-                } else {
+                } else if (watchItem.IsVisible) {
                     box.Expand(watchItem.Drawables.Box);
                 }
             }

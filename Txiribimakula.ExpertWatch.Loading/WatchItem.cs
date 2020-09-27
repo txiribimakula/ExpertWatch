@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Drawing;
-using Txiribimakula.ExpertWatch.Geometries;
 
 namespace Txiribimakula.ExpertWatch.Loading
 {
@@ -9,6 +8,13 @@ namespace Txiribimakula.ExpertWatch.Loading
         public WatchItem() {
             Drawables = new DrawableCollection();
             isLoading = true;
+            isVisible = true;
+        }
+
+        private bool isVisible;
+        public bool IsVisible {
+            get { return isVisible; }
+            set { isVisible = value; OnPropertyChanged(nameof(IsVisible)); }
         }
 
         private bool isLoading;
