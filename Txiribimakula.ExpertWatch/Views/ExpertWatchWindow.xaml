@@ -113,7 +113,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox x:Name="select" HorizontalAlignment="Center"
@@ -121,6 +121,11 @@
                                 </CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Image Source="pack://application:,,,/Txiribimakula.ExpertDebug;component/Resources/loop.png" Width="15" Height="15"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
