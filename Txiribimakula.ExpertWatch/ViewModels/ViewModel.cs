@@ -168,7 +168,6 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             OnWatchItemLoading(sender);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "VSTHRD200:Use el sufijo \"Async\" para métodos asincrónicos", Justification = "Used for an event")]
         private void OnWatchItemLoading(WatchItem watchItem) {
             if (watchItem.IsLoading) {
                 watchItem.Drawables.ClearAndNotify();
