@@ -61,7 +61,7 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             IBox box = null;
             foreach (var watchItem in WatchItems) {
                 if (box == null) {
-                    box = watchItem.Drawables.Box;
+                    box = (IBox)watchItem.Drawables.Box.Clone();
                 } else {
                     box.Expand(watchItem.Drawables.Box);
                 }

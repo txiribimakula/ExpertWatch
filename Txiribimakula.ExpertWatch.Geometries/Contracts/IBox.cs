@@ -1,6 +1,8 @@
-﻿namespace Txiribimakula.ExpertWatch.Geometries
+﻿using System;
+
+namespace Txiribimakula.ExpertWatch.Geometries
 {
-    public interface IBox
+    public interface IBox : ICloneable
     {
         float MinX { get; set; }
         float MinY { get; set; }

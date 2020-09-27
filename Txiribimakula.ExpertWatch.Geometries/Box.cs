@@ -74,5 +74,9 @@
                 }
             }
         }
+
+        public object Clone() {
+            return MemberwiseClone();
+        }
     }
 }
