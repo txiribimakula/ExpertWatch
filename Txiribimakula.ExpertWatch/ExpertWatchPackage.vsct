@@ -10,6 +10,7 @@
     <Buttons>
       <Button guid="guidPackageCmdSet" id="idCommand" priority="0x0600" type="Button">
         <Parent guid="guidVSDebugGroup" id="IDG_DEBUG_WINDOWS_INSPECT"/>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Expert Watch</ButtonText>
         </Strings>
@@ -17,6 +18,10 @@
     </Buttons>
   </Commands>
 
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidPackageCmdSet" id="idCommand" context="UICONTEXT_Debugging" />
+  </VisibilityConstraints>
+  
   <Symbols>
     <GuidSymbol name="guidPackage" value="{2f2f2923-9433-4dcb-b3b6-373c61e85461}" />
 

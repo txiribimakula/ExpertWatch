@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using EnvDTE;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
@@ -13,13 +14,23 @@ namespace Txiribimakula.ExpertWatch
 
         public readonly ExpertWatchPackage package;
 
+        private MenuCommand menuCommand;
+
         private ExpertWatchCommand(ExpertWatchPackage package, OleMenuCommandService commandService) {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.ShowToolWindow, menuCommandID);
-            commandService.AddCommand(menuItem);
+            menuCommand = new MenuCommand(this.ShowToolWindow, menuCommandID);
+            commandService.AddCommand(menuCommand);
+        }
+
+        public void RunHandler(dbgEventReason reason) {
+            menuCommand.Visible = true;
+        }
+
+        public void DesignHandler(dbgEventReason reason) {
+            menuCommand.Visible = false;
         }
 
         public static ExpertWatchCommand Instance {

@@ -25,6 +25,8 @@ namespace Txiribimakula.ExpertWatch
             this.Content = window;
             DebuggerEvents = DTE2.Events.DebuggerEvents;
             DebuggerEvents.OnEnterBreakMode += viewModel.OnEnterBreakMode;
+            DebuggerEvents.OnEnterRunMode += ExpertWatchCommand.Instance.RunHandler;
+            DebuggerEvents.OnEnterDesignMode += ExpertWatchCommand.Instance.DesignHandler;
         }
     }
 }
