@@ -47,10 +47,10 @@
         }
 
         public Box(float minX, float maxX, float minY, float maxY) {
-            MinX = minX;
-            MaxX = maxX;
-            MinY = minY;
-            MaxY = maxY;
+            this.minX = minX;
+            this.maxX = maxX;
+            this.minY = minY;
+            this.maxY = maxY;
         }
 
         public void Expand(IBox box) {
