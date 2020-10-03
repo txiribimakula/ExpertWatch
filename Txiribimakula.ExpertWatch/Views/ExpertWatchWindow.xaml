@@ -66,6 +66,10 @@
                 </b:EventTrigger>
             </b:Interaction.Triggers>
             <TextBlock Text="{Binding CurrentCursorPoint, Converter={StaticResource PointToTextConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 3"/>
+            <Canvas>
+                <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding AxisX.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
+                <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding AxisY.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
+            </Canvas>
             <ItemsControl ItemsSource="{Binding WatchItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

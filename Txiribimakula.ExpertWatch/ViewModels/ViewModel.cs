@@ -10,6 +10,7 @@ using Txiribimakula.ExpertWatch.Loading;
 using Txiribimakula.ExpertWatch.Models;
 using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Loading.Exceptions;
+using System;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
@@ -41,6 +42,9 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private GeometryDrawer geoDrawer;
         public ObservableCollection<WatchItem> WatchItems { get; set; }
 
+        public Axis AxisX { get; set; }
+        public Axis AxisY { get; set; }
+
         private IPoint currentCursorPoint;
         public IPoint CurrentCursorPoint {
             get { return currentCursorPoint; }
@@ -57,8 +61,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
 
             ICoordinateSystem coordinateSystem = new CoordinateSystem((float)frameworkElement.ActualWidth, (float)frameworkElement.ActualHeight, new Box(-10, 10, -10, 10));
 
+            AxisX = new Axis(new Box(0, (float)frameworkElement.ActualWidth, 0, 0));
+            AxisY = new Axis(new Box(0, 0, 0, (float)frameworkElement.ActualHeight));
+
             DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
             geoDrawer = new GeometryDrawer(visitor);
+
+            geoDrawer.TransformGeometry(AxisX);
+            geoDrawer.TransformGeometry(AxisY);
+            OnPropertyChanged(nameof(AxisX));
+            OnPropertyChanged(nameof(AxisY));
 
             AutoFitCommand = new RelayCommand(parameter => AutoFit((float)frameworkElement.ActualWidth / (float)frameworkElement.ActualHeight));
         }
@@ -86,6 +98,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             foreach (var watchItem in WatchItems) {
                 geoDrawer.TransformGeometries(watchItem.Drawables);
             }
+            geoDrawer.TransformGeometry(AxisX);
+            geoDrawer.TransformGeometry(AxisY);
+            OnPropertyChanged(nameof(AxisX));
+            OnPropertyChanged(nameof(AxisY));
         }
 
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {
@@ -93,6 +109,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             foreach (var watchItem in WatchItems) {
                 geoDrawer.TransformGeometries(watchItem.Drawables);
             }
+            geoDrawer.TransformGeometry(AxisX);
+            geoDrawer.TransformGeometry(AxisY);
+            OnPropertyChanged(nameof(AxisX));
+            OnPropertyChanged(nameof(AxisY));
         }
 
         public void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
@@ -127,6 +147,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 foreach (var watchItem in WatchItems) {
                     geoDrawer.TransformGeometries(watchItem.Drawables);
                 }
+                geoDrawer.TransformGeometry(AxisX);
+                geoDrawer.TransformGeometry(AxisY);
+                OnPropertyChanged(nameof(AxisX));
+                OnPropertyChanged(nameof(AxisY));
                 lastClickPoint = currentCursorPoint;
             }
         }
@@ -167,6 +191,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             foreach (var watchItem in WatchItems) {
                 geoDrawer.TransformGeometries(watchItem.Drawables);
             }
+            geoDrawer.TransformGeometry(AxisX);
+            geoDrawer.TransformGeometry(AxisY);
+            OnPropertyChanged(nameof(AxisX));
+            OnPropertyChanged(nameof(AxisY));
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {
