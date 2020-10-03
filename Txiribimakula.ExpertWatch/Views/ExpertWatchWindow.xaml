@@ -14,6 +14,7 @@
         <local:PointToPathConverter x:Key="PointToPathConverter"/>
         <local:SegmentToPathConverter x:Key="SegmentToPathConverter"/>
         <converters:PointToTextConverter x:Key="PointToTextConverter"/>
+        <converters:AxesToPathConverter x:Key="AxesToPathConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
@@ -66,9 +67,8 @@
                 </b:EventTrigger>
             </b:Interaction.Triggers>
             <TextBlock Text="{Binding CurrentCursorPoint, Converter={StaticResource PointToTextConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 3"/>
-            <Canvas>
-                <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding AxisX.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
-                <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding AxisY.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
+            <Canvas ClipToBounds="True">
+                <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding Axes, Converter={StaticResource AxesToPathConverter}, Mode=OneWay}"/>
             </Canvas>
             <ItemsControl ItemsSource="{Binding WatchItems}">
                 <ItemsControl.ItemsPanel>

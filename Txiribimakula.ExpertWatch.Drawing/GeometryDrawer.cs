@@ -14,6 +14,13 @@
             }
         }
 
+        public void TransformGeometries((IDrawable, IDrawable) drawables) {
+            if(drawables.Item1 != null && drawables.Item2 != null) {
+                drawables.Item1.TransformGeometry(DrawableVisitor);
+                drawables.Item2.TransformGeometry(DrawableVisitor);
+            }
+        }
+
         public void TransformGeometry(IDrawable drawable) {
             drawable.TransformGeometry(DrawableVisitor);
         }

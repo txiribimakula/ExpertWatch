@@ -9,13 +9,16 @@ namespace Txiribimakula.ExpertWatch
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             ISegment segment = (ISegment)value;
-
-            return "M " + segment.InitialPoint.X.ToString(CultureInfo.InvariantCulture) + "," + segment.InitialPoint.Y.ToString(CultureInfo.InvariantCulture) +
-                " L" + segment.FinalPoint.X.ToString(CultureInfo.InvariantCulture) + "," + segment.FinalPoint.Y.ToString(CultureInfo.InvariantCulture);
+            return ConvertSegmentToPath(segment);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
             return null;
+        }
+
+        public static string ConvertSegmentToPath(ISegment segment) {
+            return "M " + segment.InitialPoint.X.ToString(CultureInfo.InvariantCulture) + "," + segment.InitialPoint.Y.ToString(CultureInfo.InvariantCulture) +
+                " L" + segment.FinalPoint.X.ToString(CultureInfo.InvariantCulture) + "," + segment.FinalPoint.Y.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
