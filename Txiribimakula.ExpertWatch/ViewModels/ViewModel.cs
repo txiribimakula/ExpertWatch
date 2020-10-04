@@ -103,6 +103,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             foreach (var watchItem in WatchItems) {
                 geoDrawer.TransformGeometries(watchItem.Drawables);
             }
+            Axes.Item1.Box = new Box(0, (float)args.NewSize.Width, 0, 0);
+            Axes.Item2.Box = new Box(0, 0, 0, (float)args.NewSize.Height);
             geoDrawer.TransformGeometries(Axes);
             OnPropertyChanged(nameof(Axes));
         }
