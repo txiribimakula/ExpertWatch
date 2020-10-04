@@ -74,28 +74,32 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private void AutoFit(float windowRatio) {
             IBox box = null;
             foreach (var watchItem in WatchItems) {
-                if (box == null && watchItem.IsVisible) {
-                    box = (IBox)watchItem.Drawables.Box.Clone();
-                } else if (watchItem.IsVisible) {
-                    box.Expand(watchItem.Drawables.Box);
+                if(watchItem.Drawables.Box != null) {
+                    if (box == null && watchItem.IsVisible) {
+                        box = (IBox)watchItem.Drawables.Box.Clone();
+                    } else if (watchItem.IsVisible) {
+                        box.Expand(watchItem.Drawables.Box);
+                    }
                 }
             }
 
-            float drawablesRatio = box.HorizontalLength / box.VerticalLength;
-            if (drawablesRatio > windowRatio) {
-                float verticalIncrement = (box.VerticalLength * (drawablesRatio / windowRatio)) - box.VerticalLength;
-                box.MaxY += verticalIncrement / 2;
-                box.MinY -= verticalIncrement / 2;
-            }
+            if (box != null) {
+                float drawablesRatio = box.HorizontalLength / box.VerticalLength;
+                if (drawablesRatio > windowRatio) {
+                    float verticalIncrement = (box.VerticalLength * (drawablesRatio / windowRatio)) - box.VerticalLength;
+                    box.MaxY += verticalIncrement / 2;
+                    box.MinY -= verticalIncrement / 2;
+                }
 
-            ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, box);
-            geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
+                ICoordinateSystem coordinateSystem = new CoordinateSystem(geoDrawer.DrawableVisitor.CoordinateSystem.WorldWidth, geoDrawer.DrawableVisitor.CoordinateSystem.WorldHeight, box);
+                geoDrawer.DrawableVisitor.CoordinateSystem = coordinateSystem;
 
-            foreach (var watchItem in WatchItems) {
-                geoDrawer.TransformGeometries(watchItem.Drawables);
+                foreach (var watchItem in WatchItems) {
+                    geoDrawer.TransformGeometries(watchItem.Drawables);
+                }
+                geoDrawer.TransformGeometries(Axes);
+                OnPropertyChanged(nameof(Axes));
             }
-            geoDrawer.TransformGeometries(Axes);
-            OnPropertyChanged(nameof(Axes));
         }
 
         public void OnSizeChanged(object sender, SizeChangedEventArgs args) {
