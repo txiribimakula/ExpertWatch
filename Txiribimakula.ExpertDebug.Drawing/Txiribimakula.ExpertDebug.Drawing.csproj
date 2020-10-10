@@ -61,9 +61,9 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries\Txiribimakula.ExpertWatch.Geometries.csproj">
+    <ProjectReference Include="..\Txiribimakula.ExpertDebug.Geometries\Txiribimakula.ExpertDebug.Geometries.csproj">
       <Project>{70484C70-64CA-4ECB-96AF-2AE820C4059D}</Project>
-      <Name>Txiribimakula.ExpertWatch.Geometries</Name>
+      <Name>Txiribimakula.ExpertDebug.Geometries</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertWatch.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertDebug.Drawing", "Txiribimakula.ExpertDebug.Drawing\Txiribimakula.ExpertDebug.Drawing.csproj", "{483B7C54-A5AA-4047-998E-B2DD8A7844AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertWatch.Geometries", "Txiribimakula.ExpertWatch.Geometries\Txiribimakula.ExpertWatch.Geometries.csproj", "{70484C70-64CA-4ECB-96AF-2AE820C4059D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertDebug.Geometries", "Txiribimakula.ExpertDebug.Geometries\Txiribimakula.ExpertDebug.Geometries.csproj", "{70484C70-64CA-4ECB-96AF-2AE820C4059D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{943D0EC7-D6F3-457D-9C35-DD61EA49619F}"
 	ProjectSection(SolutionItems) = preProject

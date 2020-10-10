@@ -129,9 +129,9 @@
       <Project>{483b7c54-a5aa-4047-998e-b2dd8a7844ae}</Project>
       <Name>Txiribimakula.ExpertDebug.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Geometries\Txiribimakula.ExpertWatch.Geometries.csproj">
+    <ProjectReference Include="..\Txiribimakula.ExpertDebug.Geometries\Txiribimakula.ExpertDebug.Geometries.csproj">
       <Project>{70484c70-64ca-4ecb-96af-2ae820c4059d}</Project>
-      <Name>Txiribimakula.ExpertWatch.Geometries</Name>
+      <Name>Txiribimakula.ExpertDebug.Geometries</Name>
     </ProjectReference>
     <ProjectReference Include="..\Txiribimakula.ExpertWatch.Loading\Txiribimakula.ExpertWatch.Loading.csproj">
       <Project>{6C788DB1-A828-42B8-8E67-92F7D7206FB2}</Project>
