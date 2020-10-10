@@ -25,3 +25,5 @@
 /Txiribimakula.ExpertWatch.Drawing.Contracts/obj
 /Txiribimakula.ExpertWatch.Drawing.Contracts/bin/Debug
 /packages/Newtonsoft.Json.9.0.1
+/Txiribimakula.ExpertDebug/bin
+/Txiribimakula.ExpertDebug/obj
