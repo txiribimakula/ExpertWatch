@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -11,7 +10,7 @@ namespace Txiribimakula.ExpertWatch
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(ExpertWatchPackage.PackageGuidString)]
+    [Guid(PackageGuidString)]
     [ProvideToolWindow(typeof(ExpertWatch))]
     [ProvideBindingPath]
     [ProvideOptionPage(typeof(BlueprintsOptionPage), "Expert Debug", "Blueprints", 0, 0, true)]
@@ -20,7 +19,7 @@ namespace Txiribimakula.ExpertWatch
         public const string PackageGuidString = "2f2f2923-9433-4dcb-b3b6-373c61e85461";
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) {
-            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             ExpertWatchCommand.Initialize(this);
         }
 

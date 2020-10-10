@@ -25,14 +25,6 @@ namespace Txiribimakula.ExpertWatch
             commandService.AddCommand(menuCommand);
         }
 
-        public void RunHandler(dbgEventReason reason) {
-            menuCommand.Visible = true;
-        }
-
-        public void DesignHandler(dbgEventReason reason) {
-            menuCommand.Visible = false;
-        }
-
         public static ExpertWatchCommand Instance {
             get;
             private set;
@@ -59,6 +51,14 @@ namespace Txiribimakula.ExpertWatch
 
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+        }
+
+        public void RunHandler(dbgEventReason reason) {
+            menuCommand.Visible = true;
+        }
+
+        public void DesignHandler(dbgEventReason reason) {
+            menuCommand.Visible = false;
         }
     }
 }

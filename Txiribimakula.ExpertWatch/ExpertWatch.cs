@@ -12,21 +12,27 @@ namespace Txiribimakula.ExpertWatch
         DebuggerEvents DebuggerEvents;
 
         public ExpertWatch() : base(null) {
-            this.Caption = "Expert Watch";
+            Caption = "Expert Debug";
 
             DTE2 DTE2 = ExpertWatchCommand.Instance.ServiceProvider.GetService(typeof(DTE)) as DTE2;
 
-            ViewModel viewModel = new ViewModel(DTE2.Debugger);
-            BlueprintsOptionPage page = (BlueprintsOptionPage)ExpertWatchCommand.Instance.package.GetDialogPage(typeof(BlueprintsOptionPage));
-            page.OptionChangedEvent += viewModel.OnToolsOptionsBlueprintsChanged;
-            viewModel.OnToolsOptionsBlueprintsChanged(page.Blueprints);
-            ExpertWatchWindow window = new ExpertWatchWindow();
-            window.DataContext = viewModel;
-            this.Content = window;
-            DebuggerEvents = DTE2.Events.DebuggerEvents;
-            DebuggerEvents.OnEnterBreakMode += viewModel.OnEnterBreakMode;
-            DebuggerEvents.OnEnterRunMode += ExpertWatchCommand.Instance.RunHandler;
-            DebuggerEvents.OnEnterDesignMode += ExpertWatchCommand.Instance.DesignHandler;
+            if(DTE2 != null) {
+                ViewModel viewModel = new ViewModel(DTE2.Debugger);
+
+                BlueprintsOptionPage page = (BlueprintsOptionPage)ExpertWatchCommand.Instance.package.GetDialogPage(typeof(BlueprintsOptionPage));
+                page.OptionChangedEvent += viewModel.OnToolsOptionsBlueprintsChanged;
+
+                viewModel.OnToolsOptionsBlueprintsChanged(page.Blueprints);
+
+                ExpertWatchWindow window = new ExpertWatchWindow();
+                window.DataContext = viewModel;
+
+                Content = window;
+                DebuggerEvents = DTE2.Events.DebuggerEvents;
+                DebuggerEvents.OnEnterBreakMode += viewModel.OnEnterBreakMode;
+                DebuggerEvents.OnEnterRunMode += ExpertWatchCommand.Instance.RunHandler;
+                DebuggerEvents.OnEnterDesignMode += ExpertWatchCommand.Instance.DesignHandler;
+            }
         }
     }
 }
