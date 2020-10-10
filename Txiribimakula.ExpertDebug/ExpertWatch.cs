@@ -12,7 +12,7 @@ namespace Txiribimakula.ExpertWatch
         DebuggerEvents DebuggerEvents;
 
         public ExpertWatch() : base(null) {
-            Caption = "Expert Debug";
+            Caption = "Expert Watch";
 
             DTE2 DTE2 = ExpertWatchCommand.Instance.ServiceProvider.GetService(typeof(DTE)) as DTE2;
 
