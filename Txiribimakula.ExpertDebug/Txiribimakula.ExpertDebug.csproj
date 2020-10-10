@@ -133,9 +133,9 @@
       <Project>{70484c70-64ca-4ecb-96af-2ae820c4059d}</Project>
       <Name>Txiribimakula.ExpertDebug.Geometries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Txiribimakula.ExpertWatch.Loading\Txiribimakula.ExpertWatch.Loading.csproj">
+    <ProjectReference Include="..\Txiribimakula.ExpertDebug.Loading\Txiribimakula.ExpertDebug.Loading.csproj">
       <Project>{6C788DB1-A828-42B8-8E67-92F7D7206FB2}</Project>
-      <Name>Txiribimakula.ExpertWatch.Loading</Name>
+      <Name>Txiribimakula.ExpertDebug.Loading</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

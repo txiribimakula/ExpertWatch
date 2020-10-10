@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertDebug", "Txiribimakula.ExpertDebug\Txiribimakula.ExpertDebug.csproj", "{AB798862-8DBD-4182-9D2C-CF43ABB67288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertWatch.Loading", "Txiribimakula.ExpertWatch.Loading\Txiribimakula.ExpertWatch.Loading.csproj", "{6C788DB1-A828-42B8-8E67-92F7D7206FB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertDebug.Loading", "Txiribimakula.ExpertDebug.Loading\Txiribimakula.ExpertDebug.Loading.csproj", "{6C788DB1-A828-42B8-8E67-92F7D7206FB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Txiribimakula.ExpertDebug.Drawing", "Txiribimakula.ExpertDebug.Drawing\Txiribimakula.ExpertDebug.Drawing.csproj", "{483B7C54-A5AA-4047-998E-B2DD8A7844AE}"
 EndProject
