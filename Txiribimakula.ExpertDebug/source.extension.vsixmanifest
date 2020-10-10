@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Txiribimakula.ExpertWatch.ab7a6f68-30f9-4459-bb28-870897b19395" Version="1.0" Language="en-US" Publisher="Pablo Tobalina" />
-        <DisplayName>Txiribimakula.ExpertWatch</DisplayName>
-        <Description xml:space="preserve">Expert Watch.</Description>
+        <Identity Id="Txiribimakula.ExpertDebug.ab7a6f68-30f9-4459-bb28-870897b19395" Version="0.1.0" Language="en-US" Publisher="Pablo Tobalina" />
+        <DisplayName>Txiribimakula.ExpertDebug</DisplayName>
+        <Description xml:space="preserve">Expert Debug.</Description>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
