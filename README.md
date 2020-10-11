@@ -14,9 +14,12 @@ Just add the variable name as if you were in the native Watch window.
 * Turn off loading so they aren't reloaded (i.e. when debug is resumed).
 * Loading can be interrumpted mid-operation.
 
+#### Show / Hide
+* Each variable can be shown / hidden.
+
 #### Feedback
-* When possible, progress is shown.
-* Information is shown for each variable.
+* When possible, progressbar is shown.
+* Contextual information is shown for each variable.
 
 #### Zoom / Panning
 * Roll the mouse wheel to zooom in/out.
@@ -24,3 +27,11 @@ Just add the variable name as if you were in the native Watch window.
 
 #### Variable support management
 * Use the configuration window to edit/import/export blueprints.
+
+### Upcoming
+- [ ] Automatic color for each variable.
+- [ ] Manual color picker for each variable.
+- [ ] Dark mode support.
+- [ ] Blueprint creation wizard.
+- [ ] Toggable sense drawing.
+- [ ] Extended blueprint cusomization.
