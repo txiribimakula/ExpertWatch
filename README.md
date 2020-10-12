@@ -30,6 +30,7 @@ Just add the variable name as if you were in the native Watch window.
 
 ### Upcoming
 - [ ] Automatic color for each variable.
+- [ ] Measure distances.
 - [ ] Manual color picker for each variable.
 - [ ] Dark mode support.
 - [ ] Blueprint creation wizard.
