@@ -8,6 +8,11 @@ Just add the variable name as if you were in the native Watch window.
 
 ![preview](https://github.com/txiribimakula/expert-debug/blob/master/.github/eddemo.gif)
 
+#### Configuration
+Create and add your custom variable interpreters (aka blueprints).
+
+![preview](https://github.com/txiribimakula/expert-debug/blob/master/.github/edcfg.gif)
+
 ### Features
 #### Background loading
 * Elements are loaded asynchronously and progress can be observed on the fly.
