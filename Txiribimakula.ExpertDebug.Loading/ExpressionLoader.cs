@@ -9,10 +9,12 @@ namespace Txiribimakula.ExpertWatch.Loading
         public ExpressionLoader(Expression expression) {
             this.expression = expression;
             Type = expression.Type;
+            Name = expression.Name;
         }
 
         private Expression expression;
         public string Type { get; set; }
+        public string Name { get; set; }
 
         public ExpressionLoader GetMember(params string[] names) {
             Expression expression = this.expression;
@@ -26,12 +28,20 @@ namespace Txiribimakula.ExpertWatch.Loading
             return new ExpressionLoader(expression);
         }
 
-        public float GetValue(params string[] names) {
+        public float GetFloatValue(params string[] names) {
             Expression expression = this.expression;
             foreach (var name in names) {
                 expression = expression.DataMembers.Item(name);
             }
             return float.Parse(expression.Value);
+        }
+
+        public string GetStringValue(params string[] names) {
+            Expression expression = this.expression;
+            foreach (var name in names) {
+                expression = expression.DataMembers.Item(name);
+            }
+            return expression.Value;
         }
 
         public ExpressionLoader[] GetMembers() {

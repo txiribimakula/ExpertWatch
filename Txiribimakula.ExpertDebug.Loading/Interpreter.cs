@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
@@ -48,6 +49,23 @@ namespace Txiribimakula.ExpertWatch.Loading
                             return;
                         }
                     }
+                } else if (interpreter.Root.Key == "blueprint") {
+                    DoGetDrawables(expressionLoader.GetMember(interpreter.Root.Name), backgroundWorker);
+                } else if (interpreter.Root.Key == "switch") {
+                    string caseValue = expressionLoader.GetStringValue(interpreter.Root.Name);
+                    BlueprintNode caseNode = interpreter.Root.Members.FirstOrDefault(node => node.Value == caseValue);
+                    DoGetDrawables(expressionLoader.GetMember(caseNode.Name), backgroundWorker);
+                } else if (interpreter.Root.Key == "linked-list") {
+                    ExpressionLoader nextExpressionLoader = expressionLoader;
+                    while (nextExpressionLoader.GetStringValue() != interpreter.Root.Value) {
+                        Blueprint nextInterpreter;
+                        interpreters.TryGetValue(nextExpressionLoader.Type, out nextInterpreter);
+                        IDrawable nextDrawable = GetDrawable(nextExpressionLoader.GetMember(interpreter.Root.Members[0].Name), nextInterpreter);
+
+                        backgroundWorker.ReportProgress(50, nextDrawable);
+
+                        nextExpressionLoader = nextExpressionLoader.GetMember(interpreter.Root.Name);
+                    } 
                 } else {
                     IDrawable drawable = GetDrawable(expressionLoader, interpreter);
                     backgroundWorker.ReportProgress(100, drawable);
@@ -94,13 +112,13 @@ namespace Txiribimakula.ExpertWatch.Loading
                         centerPoint = GetPoint(currentExpressionLoader, node);
                         break;
                     case "initialAngle":
-                        initialAngle = currentExpressionLoader.GetValue(node.Name);
+                        initialAngle = currentExpressionLoader.GetFloatValue(node.Name);
                         break;
                     case "sweepAngle":
-                        sweepAngle = currentExpressionLoader.GetValue(node.Name);
+                        sweepAngle = currentExpressionLoader.GetFloatValue(node.Name);
                         break;
                     case "radius":
-                        radius = currentExpressionLoader.GetValue(node.Name);
+                        radius = currentExpressionLoader.GetFloatValue(node.Name);
                         break;
                     case "":
                     case null:
@@ -150,10 +168,10 @@ namespace Txiribimakula.ExpertWatch.Loading
             foreach (var node in interpreterNode.Members) {
                 switch (node.Key) {
                     case "x":
-                        x = currentExpressionLoader.GetValue(node.Name);
+                        x = currentExpressionLoader.GetFloatValue(node.Name);
                         break;
                     case "y":
-                        y = currentExpressionLoader.GetValue(node.Name);
+                        y = currentExpressionLoader.GetFloatValue(node.Name);
                         break;
                     case "":
                     case null:
