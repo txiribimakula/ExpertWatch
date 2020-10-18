@@ -9,6 +9,7 @@ namespace Txiribimakula.ExpertWatch.Loading
             Drawables = new DrawableCollection();
             isLoading = true;
             isVisible = true;
+            color = "Black"; 
         }
 
         private bool isVisible;
@@ -43,6 +44,13 @@ namespace Txiribimakula.ExpertWatch.Loading
             get { return description; }
             set { description = value; OnPropertyChanged(nameof(Description)); }
         }
+
+        private string color;
+        public string Color {
+            get { return color; }
+            set { color = value; OnPropertyChanged(nameof(Color)); }
+        }
+
 
         private DrawableCollection drawables;
         public DrawableCollection Drawables {

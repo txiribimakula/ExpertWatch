@@ -11,6 +11,7 @@ using Txiribimakula.ExpertWatch.Models;
 using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Loading.Exceptions;
 using System;
+using System.Windows.Media;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
@@ -54,6 +55,8 @@ namespace Txiribimakula.ExpertWatch.ViewModels
         private IPoint lastClickPoint;
 
         public RelayCommand AutoFitCommand { get; set; }
+        public RelayCommand PickColorCommand { get; set; }
+        
 
         public void OnLoaded(object sender, RoutedEventArgs e) {
             FrameworkElement frameworkElement = (FrameworkElement)sender;
@@ -69,6 +72,14 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             OnPropertyChanged(nameof(Axes));
 
             AutoFitCommand = new RelayCommand(parameter => AutoFit((float)frameworkElement.ActualWidth / (float)frameworkElement.ActualHeight));
+            PickColorCommand = new RelayCommand(watchItem => PickColor((WatchItem)watchItem));
+        }
+
+        private void PickColor(WatchItem watchItem) {
+            System.Windows.Forms.ColorDialog colorDialog = new System.Windows.Forms.ColorDialog();
+            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                watchItem.Color = "#" + (colorDialog.Color.ToArgb() & 0x00FFFFFF).ToString("X6");
+            }
         }
 
         private void AutoFit(float windowRatio) {
