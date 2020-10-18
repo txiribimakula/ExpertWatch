@@ -111,7 +111,7 @@
                     <DataGridTemplateColumn Header="Color">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="{Binding Color}" Command="{Binding ElementName=dataGrid,  Path=DataContext.PickColorCommand}" CommandParameter="{Binding}"></Button>
+                                <Button Background="{Binding Color}" Command="{Binding ElementName=dataGrid,  Path=DataContext.PickColorCommand}" CommandParameter="{Binding}" Focusable="False"></Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
