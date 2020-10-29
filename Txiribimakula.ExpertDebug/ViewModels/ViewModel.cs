@@ -216,11 +216,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 };
                 backgroundWorker.ProgressChanged += (sender, arguments) => {
                     IDrawable drawable = (IDrawable)arguments.UserState;
-                    geoDrawer.TransformGeometry(drawable);
-                    watchItem.Drawables.AddAndNotify(drawable);
+                    if(drawable != null) {
+                        geoDrawer.TransformGeometry(drawable);
+                        watchItem.Drawables.AddAndNotify(drawable);
+                    }
                     watchItem.Drawables.Progress = arguments.ProgressPercentage;
                 };
                 backgroundWorker.RunWorkerCompleted += (sender, arguments) => {
+                    if(watchItem.Drawables.Progress != 100) {
+                        // set progressbar yellow?
+                    }
                 };
                 try {
                     loader.Load(watchItem, backgroundWorker);

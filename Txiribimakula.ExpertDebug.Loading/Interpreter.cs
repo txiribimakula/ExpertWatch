@@ -26,6 +26,7 @@ namespace Txiribimakula.ExpertWatch.Loading
         }
 
         private Dictionary<string, Blueprint> interpreters;
+        private int currentProgress = 0;
 
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
             Tuple<ExpressionLoader, BackgroundWorker> tuple = (Tuple<ExpressionLoader, BackgroundWorker>)e.Argument;
@@ -42,9 +43,8 @@ namespace Txiribimakula.ExpertWatch.Loading
                     for (int i = 0; i < totalCount; i++) {
                         Blueprint nextInterpreter;
                         interpreters.TryGetValue(expressionLoaders[i].Type, out nextInterpreter);
-                        IDrawable nextDrawable = GetDrawable(expressionLoaders[i], nextInterpreter);
-                        float progress = ((i + 1) / totalCount) * 100;
-                        backgroundWorker.ReportProgress(Convert.ToInt32(progress), nextDrawable);
+                        currentProgress = Convert.ToInt32(((i + 1) / totalCount) * 100);
+                        DoGetDrawables(expressionLoaders[i], backgroundWorker);
                         if (backgroundWorker.CancellationPending) {
                             return;
                         }
@@ -58,17 +58,16 @@ namespace Txiribimakula.ExpertWatch.Loading
                 } else if (interpreter.Root.Key == "linked-list") {
                     ExpressionLoader nextExpressionLoader = expressionLoader;
                     while (nextExpressionLoader.GetStringValue() != interpreter.Root.Value) {
-                        Blueprint nextInterpreter;
-                        interpreters.TryGetValue(nextExpressionLoader.Type, out nextInterpreter);
-                        IDrawable nextDrawable = GetDrawable(nextExpressionLoader.GetMember(interpreter.Root.Members[0].Name), nextInterpreter);
-
-                        backgroundWorker.ReportProgress(50, nextDrawable);
-
+                        DoGetDrawables(nextExpressionLoader.GetMember(interpreter.Root.Members[0].Name), backgroundWorker);
                         nextExpressionLoader = nextExpressionLoader.GetMember(interpreter.Root.Name);
-                    } 
+                        if (backgroundWorker.CancellationPending) {
+                            return;
+                        }
+                    }
+                    backgroundWorker.ReportProgress(100, null);
                 } else {
                     IDrawable drawable = GetDrawable(expressionLoader, interpreter);
-                    backgroundWorker.ReportProgress(100, drawable);
+                    backgroundWorker.ReportProgress(currentProgress, drawable);
                 }
             } else {
                 throw new LoadingException("No interpreter found");
