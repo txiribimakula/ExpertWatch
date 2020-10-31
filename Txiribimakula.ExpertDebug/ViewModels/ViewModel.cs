@@ -137,11 +137,11 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 lastClickPoint = new Geometries.Point((float)point.X, (float)point.Y);
             } else if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
                 if(isMeasuring) {
-                    Ruler.TransformedGeometry = null;
+                    Ruler = null;
+                    OnPropertyChanged(nameof(Ruler));
                     isMeasuring = false;
                 } else {
-                    Ruler.InitialPoint = currentCursorPoint;
-                    Ruler.FinalPoint = currentCursorPoint;
+                    Ruler = new DrawableSegment(currentCursorPoint, currentCursorPoint);
                     geoDrawer.TransformGeometry(Ruler);
                     OnPropertyChanged(nameof(Ruler));
                     isMeasuring = true;
@@ -174,12 +174,15 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 }
                 geoDrawer.TransformGeometries(Axes);
                 OnPropertyChanged(nameof(Axes));
-                OnPropertyChanged(nameof(Ruler));
+                if (isMeasuring) {
+                    geoDrawer.TransformGeometry(Ruler);
+                    OnPropertyChanged(nameof(Ruler));
+                }
                 lastClickPoint = currentCursorPoint;
-            } else if(isMeasuring) {
-                // TODO: do this more elegantly (ie: Ruler class)
-                ((ISegment)Ruler.TransformedGeometry).InitialPoint = geoDrawer.DrawableVisitor.CoordinateSystem.ConvertPointToWorld(Ruler.InitialPoint);
-                ((ISegment)Ruler.TransformedGeometry).FinalPoint = currentCursorPoint;
+            } 
+            if(isMeasuring) {
+                Ruler.FinalPoint = CurrentCursorPoint;
+                geoDrawer.TransformGeometry(Ruler);
                 OnPropertyChanged(nameof(Ruler));
             }
         }
