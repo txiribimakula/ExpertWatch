@@ -8,8 +8,11 @@ namespace Txiribimakula.ExpertWatch
     public class SegmentToPathConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            ISegment segment = (ISegment)value;
-            return ConvertSegmentToPath(segment);
+            if(value != null) {
+                ISegment segment = (ISegment)value;
+                return ConvertSegmentToPath(segment);
+            }
+            return "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

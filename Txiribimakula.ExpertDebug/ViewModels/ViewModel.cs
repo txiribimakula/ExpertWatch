@@ -45,6 +45,9 @@ namespace Txiribimakula.ExpertWatch.ViewModels
 
         public (Axis, Axis) Axes { get; set; }
 
+        public IDrawableSegment Ruler { get; set; }
+        private bool isMeasuring;
+
         private IPoint currentCursorPoint;
         public IPoint CurrentCursorPoint {
             get { return currentCursorPoint; }
@@ -64,7 +67,9 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             ICoordinateSystem coordinateSystem = new CoordinateSystem((float)frameworkElement.ActualWidth, (float)frameworkElement.ActualHeight, new Box(-10, 10, -10, 10));
 
             Axes = (new Axis(new Box(0, (float)frameworkElement.ActualWidth, 0, 0)), new Axis(new Box(0, 0, 0, (float)frameworkElement.ActualHeight)));
-            
+
+            Ruler = new DrawableSegment(new Geometries.Point(0, 0), new Geometries.Point(0, 0));
+
             DrawableVisitor visitor = new DrawableVisitor(coordinateSystem);
             geoDrawer = new GeometryDrawer(visitor);
 
@@ -130,6 +135,17 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 isMiddleMouseDown = true;
                 System.Windows.Point point = e.GetPosition(senderElement);
                 lastClickPoint = new Geometries.Point((float)point.X, (float)point.Y);
+            } else if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
+                if(isMeasuring) {
+                    Ruler = null;
+                    OnPropertyChanged(nameof(Ruler));
+                    isMeasuring = false;
+                } else {
+                    Ruler = new DrawableSegment(currentCursorPoint, currentCursorPoint);
+                    geoDrawer.TransformGeometry(Ruler);
+                    OnPropertyChanged(nameof(Ruler));
+                    isMeasuring = true;
+                }
             }
             senderElement.CaptureMouse();
         }
@@ -158,7 +174,16 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                 }
                 geoDrawer.TransformGeometries(Axes);
                 OnPropertyChanged(nameof(Axes));
+                if (isMeasuring) {
+                    geoDrawer.TransformGeometry(Ruler);
+                    OnPropertyChanged(nameof(Ruler));
+                }
                 lastClickPoint = currentCursorPoint;
+            } 
+            if(isMeasuring) {
+                Ruler.FinalPoint = CurrentCursorPoint;
+                geoDrawer.TransformGeometry(Ruler);
+                OnPropertyChanged(nameof(Ruler));
             }
         }
 
@@ -200,6 +225,10 @@ namespace Txiribimakula.ExpertWatch.ViewModels
             }
             geoDrawer.TransformGeometries(Axes);
             OnPropertyChanged(nameof(Axes));
+            if(isMeasuring) {
+                geoDrawer.TransformGeometry(Ruler);
+                OnPropertyChanged(nameof(Ruler));
+            }
         }
 
         private void OnWatchItemNameChanged(WatchItem sender) {

@@ -13,9 +13,12 @@ namespace Txiribimakula.ExpertWatch.Drawing
         }
 
         public ISegment GetTransformedSegment(ISegment segment) {
-            IPoint initialPoint = CoordinateSystem.ConvertPointToWorld(segment.InitialPoint);
-            IPoint finalPoint = CoordinateSystem.ConvertPointToWorld(segment.FinalPoint);
-            return new Segment(initialPoint, finalPoint);
+            if(segment != null) {
+                IPoint initialPoint = CoordinateSystem.ConvertPointToWorld(segment.InitialPoint);
+                IPoint finalPoint = CoordinateSystem.ConvertPointToWorld(segment.FinalPoint);
+                return new Segment(initialPoint, finalPoint);
+            }
+            return null;
         }
 
         public IArc GetTransformedArc(IArc arc) {
