@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -37,6 +38,18 @@ namespace Txiribimakula.ExpertWatch.Drawing
                 Box.Expand(element.Box);
             }
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, element));
+        }
+
+        public void AddAndNotify(List<IDrawable> elements) {
+            foreach (var element in elements) {
+                Add(element);
+                if (Box == null) {
+                    Box = element.Box;
+                } else {
+                    Box.Expand(element.Box);
+                }
+            }
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         public void ResetAndNotify() {

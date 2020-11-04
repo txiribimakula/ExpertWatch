@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Threading;
 using Txiribimakula.ExpertWatch.Drawing;
 using Txiribimakula.ExpertWatch.Geometries;
 using Txiribimakula.ExpertWatch.Geometries.Contracts;
@@ -28,9 +29,28 @@ namespace Txiribimakula.ExpertWatch.Loading
         private Dictionary<string, Blueprint> interpreters;
         private int currentProgress = 0;
 
+        private List<IDrawable> drawables;
+
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
             Tuple<ExpressionLoader, BackgroundWorker> tuple = (Tuple<ExpressionLoader, BackgroundWorker>)e.Argument;
+
+            drawables = new List<IDrawable>();
+
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += (timerSender, args) => {
+                if (drawables.Count > 0) {
+                    int currentDrawablesCount = drawables.Count;
+                    tuple.Item2.ReportProgress(currentProgress, drawables.GetRange(0, currentDrawablesCount));
+                    drawables.RemoveRange(0, currentDrawablesCount);
+                }
+            };
+            aTimer.Interval = 1000;
+            aTimer.Enabled = true;
             DoGetDrawables(tuple.Item1, tuple.Item2);
+            aTimer.Enabled = false;
+            int drawablesCount = drawables.Count;
+            tuple.Item2.ReportProgress(currentProgress, drawables.GetRange(0, drawablesCount));
+            drawables.RemoveRange(0, drawablesCount);
         }
 
         private void DoGetDrawables(ExpressionLoader expressionLoader, BackgroundWorker backgroundWorker) {
@@ -67,7 +87,9 @@ namespace Txiribimakula.ExpertWatch.Loading
                     backgroundWorker.ReportProgress(100, null);
                 } else {
                     IDrawable drawable = GetDrawable(expressionLoader, interpreter);
-                    backgroundWorker.ReportProgress(currentProgress, drawable);
+                    if(drawable != null) {
+                        drawables.Add(drawable);
+                    }
                 }
             } else {
                 throw new LoadingException("No interpreter found");

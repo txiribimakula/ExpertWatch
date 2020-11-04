@@ -12,6 +12,7 @@ using System.ComponentModel;
 using Txiribimakula.ExpertWatch.Loading.Exceptions;
 using System;
 using System.Windows.Media;
+using System.Collections.Generic;
 
 namespace Txiribimakula.ExpertWatch.ViewModels
 {
@@ -244,11 +245,11 @@ namespace Txiribimakula.ExpertWatch.ViewModels
                     backgroundWorker.CancelAsync();
                 };
                 backgroundWorker.ProgressChanged += (sender, arguments) => {
-                    IDrawable drawable = (IDrawable)arguments.UserState;
-                    if(drawable != null) {
+                    List<IDrawable> drawables = (List<IDrawable>)arguments.UserState;
+                    foreach (var drawable in drawables) {
                         geoDrawer.TransformGeometry(drawable);
-                        watchItem.Drawables.AddAndNotify(drawable);
                     }
+                    watchItem.Drawables.AddAndNotify(drawables);
                     watchItem.Drawables.Progress = arguments.ProgressPercentage;
                 };
                 backgroundWorker.RunWorkerCompleted += (sender, arguments) => {
