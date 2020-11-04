@@ -94,10 +94,10 @@
                                     <Path Opacity="0.7" Stroke="{Binding Path=DataContext.Color, RelativeSource={RelativeSource AncestorType=ItemsControl}}" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawableArc}">
-                                    <Path Opacity="0.7" Stroke="Black" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
+                                    <Path Opacity="0.7" Stroke="{Binding Path=DataContext.Color, RelativeSource={RelativeSource AncestorType=ItemsControl}}" StrokeThickness="2" Data="{Binding TransformedGeometry, Converter={StaticResource ArcToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type drawing:DrawablePoint}">
-                                    <Path Opacity="0.9" Stroke="Black" Fill="Black" Data="{Binding TransformedGeometry, Converter={StaticResource PointToPathConverter}, Mode=OneWay}"/>
+                                    <Path Opacity="0.9" Stroke="{Binding Path=DataContext.Color, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Fill="Black" Data="{Binding TransformedGeometry, Converter={StaticResource PointToPathConverter}, Mode=OneWay}"/>
                                 </DataTemplate>
                             </ItemsControl.Resources>
                         </ItemsControl>
