@@ -33,53 +33,61 @@ namespace Txiribimakula.ExpertWatch.Drawing
         private void SetBox() {
             float minX = 0.0f, maxX = 0.0f, minY = 0.0f, maxY = 0.0f;
 
-            var initialAngleQuadrant = GetQuadrant(InitialAngle);
-            var finalAngleQuadrant = GetQuadrant(InitialAngle + SweepAngle);
 
             List<string> crossedSemiAxes = new List<string>();
+            if(SweepAngle == 360) {
+                crossedSemiAxes.Add("xPositive");
+                crossedSemiAxes.Add("yPositive");
+                crossedSemiAxes.Add("xNegative");
+                crossedSemiAxes.Add("yNegative");
+            } else {
+                var initialAngleQuadrant = GetQuadrant(InitialAngle);
+                var finalAngleQuadrant = GetQuadrant(InitialAngle + SweepAngle);
 
-            int currentQuadrant = initialAngleQuadrant;
-            while (currentQuadrant != finalAngleQuadrant) {
-                if (SweepAngle > 0) {
-                    currentQuadrant++;
-                    if (currentQuadrant == 4) {
-                        currentQuadrant = 0;
-                    }
-                    switch (currentQuadrant) {
-                        case 0:
-                            crossedSemiAxes.Add("xPositive");
-                            break;
-                        case 1:
-                            crossedSemiAxes.Add("yPositive");
-                            break;
-                        case 2:
-                            crossedSemiAxes.Add("xNegative");
-                            break;
-                        case 3:
-                            crossedSemiAxes.Add("yNegative");
-                            break;
-                    }
-                } else {
-                    currentQuadrant--;
-                    if (currentQuadrant == -1) {
-                        currentQuadrant = 3;
-                    }
-                    switch (currentQuadrant) {
-                        case 0:
-                            crossedSemiAxes.Add("yPositive");
-                            break;
-                        case 1:
-                            crossedSemiAxes.Add("xNegative");
-                            break;
-                        case 2:
-                            crossedSemiAxes.Add("yNegative");
-                            break;
-                        case 3:
-                            crossedSemiAxes.Add("xPositive");
-                            break;
+                int currentQuadrant = initialAngleQuadrant;
+                while (currentQuadrant != finalAngleQuadrant) {
+                    if (SweepAngle > 0) {
+                        currentQuadrant++;
+                        if (currentQuadrant == 4) {
+                            currentQuadrant = 0;
+                        }
+                        switch (currentQuadrant) {
+                            case 0:
+                                crossedSemiAxes.Add("xPositive");
+                                break;
+                            case 1:
+                                crossedSemiAxes.Add("yPositive");
+                                break;
+                            case 2:
+                                crossedSemiAxes.Add("xNegative");
+                                break;
+                            case 3:
+                                crossedSemiAxes.Add("yNegative");
+                                break;
+                        }
+                    } else {
+                        currentQuadrant--;
+                        if (currentQuadrant == -1) {
+                            currentQuadrant = 3;
+                        }
+                        switch (currentQuadrant) {
+                            case 0:
+                                crossedSemiAxes.Add("yPositive");
+                                break;
+                            case 1:
+                                crossedSemiAxes.Add("xNegative");
+                                break;
+                            case 2:
+                                crossedSemiAxes.Add("yNegative");
+                                break;
+                            case 3:
+                                crossedSemiAxes.Add("xPositive");
+                                break;
+                        }
                     }
                 }
             }
+           
             if (crossedSemiAxes.Contains("xNegative")) {
                 minX = CenterPoint.X - Radius;
             } else {
