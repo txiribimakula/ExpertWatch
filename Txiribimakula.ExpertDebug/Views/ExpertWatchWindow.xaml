@@ -70,9 +70,6 @@
             <TextBlock Foreground="HotPink" FontWeight="Bold" Text="{Binding Ruler, Converter={StaticResource RulerToTextConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 15"/>
             <TextBlock Text="{Binding CurrentCursorPoint, Converter={StaticResource PointToTextConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 3"/>
             <Canvas ClipToBounds="True">
-                <Path Opacity="1" Stroke="HotPink" StrokeThickness="2" Data="{Binding Ruler.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
-            </Canvas>
-            <Canvas ClipToBounds="True">
                 <Path Opacity="0.3" Stroke="Black" StrokeThickness="1" Data="{Binding Axes, Converter={StaticResource AxesToPathConverter}, Mode=OneWay}"/>
             </Canvas>
             <ItemsControl ItemsSource="{Binding WatchItems}">
@@ -104,6 +101,9 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            <Canvas ClipToBounds="True">
+                <Path Opacity="1" Stroke="HotPink" StrokeThickness="2" Data="{Binding Ruler.TransformedGeometry, Converter={StaticResource SegmentToPathConverter}, Mode=OneWay}"/>
+            </Canvas>
         </Grid>
         <GridSplitter Grid.Row="1"
                       HorizontalAlignment="Stretch"
