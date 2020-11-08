@@ -33,7 +33,7 @@ namespace Txiribimakula.ExpertWatch.Loading
             foreach (var name in names) {
                 expression = expression.DataMembers.Item(name);
             }
-            return float.Parse(expression.Value);
+            return float.Parse(expression.Value, System.Globalization.NumberStyles.Float, System.Threading.Thread.CurrentThread.CurrentUICulture);
         }
 
         public string GetStringValue(params string[] names) {
